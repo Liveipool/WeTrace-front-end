@@ -46,7 +46,7 @@ export default {
   width: 60%;
   height: 100%;
   background: linear-gradient(250deg, transparent 25%, #D70C18 0);
-  animation: backgroundToLeft 1.5s 1s 1;
+  animation: backgroundToLeft 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
@@ -55,7 +55,7 @@ export default {
   width: 61%;
   height: 100%;
   background: linear-gradient(70deg, transparent 25%, #194EA0 0);
-  animation: backgroundToRight 1.5s 1s 1;
+  animation: backgroundToRight 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
@@ -70,14 +70,14 @@ export default {
 #first {
   left: 35%;
   top: 35%;
-  animation: nameToLeft 1.5s 1s 1;
+  animation: nameToLeft 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
 #last {
   left: 49%;
   top: 35%;
-  animation: nameToRight 1.5s 1s 1;
+  animation: nameToRight 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
@@ -86,7 +86,7 @@ export default {
   bottom: 13%;
   width: 13em;
   height: 15em;
-  animation: penguinToLeft 1.5s 1s 1;
+  animation: penguinToLeft 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
@@ -98,21 +98,21 @@ export default {
 #footprintOne {
   left: 70%;
   top: 25%;
-  animation: footprintOneToRight 1.5s 1s 1;
+  animation: footprintOneToRight 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
 #footprintTwo {
   left: 88%;
   top: 40%;
-  animation: footprintTwoToRight 1.5s 1s 1;
+  animation: footprintTwoToRight 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
 #footprintThree {
   left: 77%;
   top: 70%;
-  animation: footprintThreeToRight 1.5s 1s 1;
+  animation: footprintThreeToRight 1.5s 1.5s 1;
   animation-fill-mode: forwards;
 }
 
