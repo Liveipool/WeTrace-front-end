@@ -58,7 +58,7 @@
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">经办人: {{block.handler}}</div>
           <div class="block-item">经办时间: {{block.handleTime}}</div>
-          <div class="block-item">本站id: {{block.currentNodeId}}</div>
+          <div class="block-item">本站Id: {{block.currentNodeId}}</div>
           <div class="block-item">本站名称: {{block.currentNodeName}}</div>
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">下站Id: {{block.nextNodeId}}</div>
@@ -90,7 +90,7 @@
             <div class="dialog-block-item">本站地址: {{this.dialogBlock.currentNodeLocation}}</div>
             <div class="dialog-block-item">经办人: {{this.dialogBlock.handler}}</div>
             <div class="dialog-block-item">经办时间: {{this.dialogBlock.handleTime}}</div>
-            <div class="dialog-block-item">本站id: {{this.dialogBlock.currentNodeId}}</div>
+            <div class="dialog-block-item">本站Id: {{this.dialogBlock.currentNodeId}}</div>
             <div class="dialog-block-item">本站名称: {{this.dialogBlock.currentNodeName}}</div>
             <div class="dialog-block-item">下站Id: {{this.dialogBlock.nextNodeId}}</div>
             <div class="dialog-block-item">下站名称: {{this.dialogBlock.nextNodeName}}</div>
@@ -171,6 +171,7 @@ export default {
       } else {
         this.showResult = true;
         this.centerAnimate();
+        this.resultAnimate();
       }
     },
     // 控制logo和输入框的动画
@@ -328,6 +329,9 @@ export default {
   width: calc(100% - 200px);
   height: 800px;
   overflow-y: auto;
+  animation: showResult 0.5s ease-out 10s 1;
+  /*animation-play-state: paused;*/
+
 }
 
 /*.chains {
@@ -418,6 +422,12 @@ export default {
   0 {margin-top: 0;}
   100% {margin-top: 200px;}
 }
+
+@keyframes showResult {
+  0 {display: none;}
+  100% {display: block;}
+}
+
 </style>
 
 <style>
