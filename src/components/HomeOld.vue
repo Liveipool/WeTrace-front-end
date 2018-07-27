@@ -45,8 +45,8 @@
         <div class="vertical"></div>
       </div> -->
 
-      <div class="blocks" v-for="(block, index) in blocks" :key="index.toString()">
-        <div class="block" @click="clickBlock(block)">
+      <div class="blocks">
+        <div class="block" @click="clickBlock(block)" v-for="(block, index) in blocks" :key="index.toString()">
           <div class="block-item-head">{{block.businessType}}</div>
           <!-- <div class="block-item">index: {{index}}</div> -->
           <div class="block-item">{{getItemId}}: {{block.itemId}}</div>

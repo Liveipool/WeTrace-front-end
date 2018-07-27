@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <img
-      class="homeBackground" v-show="language === 'Chinese' && !showResult" src="../../static/homeBackground.jpg">
+      class="homeBackground" v-show="language === 'Chinese'
+      && !showResult" src="../../static/homeBackground.jpg">
     <img
       class="homeBackground" v-show="language === 'English' && !showResult"
       src="../../static/homeBackgroundEnglish.jpg">
@@ -38,7 +39,30 @@
       class="homeBackground" v-show="showResult"
       src="../../static/homeBackgroundAfterSearch.jpg">
 
-    <div class="blocks"></div>
+    <div id="result" v-show="showResult">
+      <div
+        class="blocks">
+          <div class="block" @click="clickBlock(block)" v-for="(block, index) in blocks" :key="index.toString()">
+            <div class="block-item-head">{{block.businessType}}</div>
+            <!-- <div class="block-item">index: {{index}}</div> -->
+            <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
+            <!-- <div class="block-item">条形码: {{block.barcode}}</div> -->
+            <!-- <div class="block-item">产地: {{block.origin}}</div> -->
+            <!-- <div class="block-item">质检Id: {{block.qualityId}}</div> -->
+            <!-- <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div> -->
+            <!-- <div class="block-item">物流单号: {{block.logistics}}</div> -->
+            <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
+            <div class="block-item">{{getHandler}}: {{block.handler}}</div>
+            <div class="block-item">{{getHandleTime}}: {{block.handleTime}}</div>
+            <div class="block-item">{{getCurrentNodeId}}: {{block.currentNodeId}}</div>
+            <!-- <div class="block-item">本站名称: {{block.currentNodeName}}</div> -->
+            <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
+            <div class="block-item">{{getNextNodeId}}: {{block.nextNodeId}}</div>
+            <!-- <div class="block-item">下站名称: {{block.nextNodeName}}</div> -->
+            <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
+          </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -127,6 +151,11 @@ export default {
       search.style.animationPlayState = 'running';
       searchButton.style.animationPlayState = 'running';
     },
+    // 点击某一个区块打开完整信息
+    clickBlock(block) {
+      this.dialogVisible = true;
+      this.dialogBlock = block;
+    },
   },
   computed: {
     getPlaceHolder() {
@@ -134,6 +163,51 @@ export default {
     },
     getEmptyResult() {
       return this.language === 'Chinese' ? '未查到相关数据，请检查ID是否正确...' : 'Data not found, please check...';
+    },
+    getBusinessType() {
+      return this.language === 'Chinese' ? '商家类型' : 'businessType';
+    },
+    getItemId() {
+      return this.language === 'Chinese' ? '物品Id' : 'itemId';
+    },
+    getBarcode() {
+      return this.language === 'Chinese' ? '条形码' : 'barcode';
+    },
+    getOrigin() {
+      return this.language === 'Chinese' ? '产地' : 'origin';
+    },
+    getQualityId() {
+      return this.language === 'Chinese' ? '质检Id' : 'qualityId';
+    },
+    getAuthenticationId() {
+      return this.language === 'Chinese' ? '工厂认证证书Id' : 'authenticationId';
+    },
+    getLogistics() {
+      return this.language === 'Chinese' ? '物流单号' : 'logistics';
+    },
+    getCurrentNodeId() {
+      return this.language === 'Chinese' ? '本站Id' : 'currentNodeId';
+    },
+    getCurrentNodeName() {
+      return this.language === 'Chinese' ? '本站名称' : 'currentNodeName';
+    },
+    getCurrentNodeLocation() {
+      return this.language === 'Chinese' ? '本站地址' : 'currentNodeLocation';
+    },
+    getHandler() {
+      return this.language === 'Chinese' ? '经办人' : 'handler';
+    },
+    getHandleTime() {
+      return this.language === 'Chinese' ? '经办时间' : 'handleTime';
+    },
+    getNextNodeId() {
+      return this.language === 'Chinese' ? '下站Id' : 'nextNodeId';
+    },
+    getNextNodeName() {
+      return this.language === 'Chinese' ? '下站名称' : 'nextNodeName';
+    },
+    getNextNodeLocation() {
+      return this.language === 'Chinese' ? '下站地址' : 'nextNodeLocation';
     },
   },
 };
@@ -252,6 +326,54 @@ export default {
   top: 32%;
   font-size: 18px;
   color: #fff;
+}
+
+#result {
+  position: absolute;
+  left: 15%;
+  top: 29%;
+  width: 85%;
+  height: 71%;
+  overflow: auto;
+}
+
+.blocks {
+  width: 100%;
+  height: 100%;
+}
+
+.block {
+  position: relative;
+  display: inline-block;
+  margin: 0 50px 50px 0;
+  padding: 10px 20px 20px 20px;
+  width: 24%;
+  height: 30%;
+  background-color: rgba(41, 171, 226, 0.22);
+  overflow: auto;
+  font-size: 16px;
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+}
+
+.block:hover {
+  /*border: 1px solid #D70C18;*/
+  transform: scale(1.01, 1.01);
+}
+
+.block-item-head {
+  /*margin: 10px;*/
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  /*padding: 5px;*/
+  border-bottom: 1px solid #fff;
+  font-size: 24px;
+  color: #fff;
+}
+
+.block-item {
+  margin: 5px 0;
 }
 
 @keyframes buttonUp {
