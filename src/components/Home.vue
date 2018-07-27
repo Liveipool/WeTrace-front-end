@@ -46,22 +46,22 @@
       </div> -->
 
       <div class="blocks" v-for="(block, index) in blocks" :key="index.toString()">
-        <div class="block">
-          <div class="block-item">index: {{index}}</div>
+        <div class="block" @click="clickBlock(block)">
+          <!-- <div class="block-item">index: {{index}}</div> -->
           <div class="block-item">物品Id: {{block.itemId}}</div>
-          <div class="block-item">条形码: {{block.barcode}}</div>
+          <!-- <div class="block-item">条形码: {{block.barcode}}</div> -->
           <div class="block-item">产地: {{block.origin}}</div>
           <div class="block-item">质检Id: {{block.qualityId}}</div>
           <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div>
           <div class="block-item">物流单号: {{block.logistics}}</div>
-          <div class="block-item">本站id: {{block.currentNodeId}}</div>
-          <div class="block-item">本站名称: {{block.currentNodeName}}</div>
-          <div class="block-item">本站地址: {{block.currentNodeLocation}}</div>
+          <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">经办人: {{block.handler}}</div>
-          <div class="block-item">经办时间: {{block.time}}</div>
-          <div class="block-item">下站Id: {{block.nextNodeId}}</div>
+          <div class="block-item">经办时间: {{block.handleTime}}</div>
+          <!-- <div class="block-item">本站id: {{block.currentNodeId}}</div> -->
+          <div class="block-item">本站名称: {{block.currentNodeName}}</div>
+          <!-- <div class="block-item">下站Id: {{block.nextNodeId}}</div> -->
           <div class="block-item">下站名称: {{block.nextNodeName}}</div>
-          <div class="block-item">下站地址: {{block.nextNodeLocation}}</div>
+          <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
         </div>
         <div
           class="horizontal"
@@ -72,8 +72,31 @@
           v-show="(parseInt(index) % 6 === 2 || parseInt(index) % 6 === 3)
           && parseInt(index) !== (block.length - 1)"></div>
       </div>
-    </div>
 
+      <el-dialog
+        title="完整区块信息"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :show-close="false">
+            <div class="dialog-block-item">物品Id: {{this.dialogBlock.itemId}}</div>
+            <div class="dialog-block-item">条形码: {{this.dialogBlock.barcode}}</div>
+            <div class="dialog-block-item">产地: {{this.dialogBlock.origin}}</div>
+            <div class="dialog-block-item">质检Id: {{this.dialogBlock.qualityId}}</div>
+            <div class="dialog-block-item">工厂认证证书Id: {{this.dialogBlock.authenticationId}}</div>
+            <div class="dialog-block-item">物流单号: {{this.dialogBlock.logistics}}</div>
+            <div class="dialog-block-item">本站地址: {{this.dialogBlock.currentNodeLocation}}</div>
+            <div class="dialog-block-item">经办人: {{this.dialogBlock.handler}}</div>
+            <div class="dialog-block-item">经办时间: {{this.dialogBlock.handleTime}}</div>
+            <div class="dialog-block-item">本站id: {{this.dialogBlock.currentNodeId}}</div>
+            <div class="dialog-block-item">本站名称: {{this.dialogBlock.currentNodeName}}</div>
+            <div class="dialog-block-item">下站Id: {{this.dialogBlock.nextNodeId}}</div>
+            <div class="dialog-block-item">下站名称: {{this.dialogBlock.nextNodeName}}</div>
+            <div class="dialog-block-item">下站地址: {{this.dialogBlock.nextNodeLocation}}</div>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
   </div>
 </template>
 
@@ -101,6 +124,8 @@ export default {
       result: [],
       emptyRe: [],
       blocks,
+      dialogVisible: false,
+      dialogBlock: {},
     };
   },
   components: {
@@ -155,6 +180,11 @@ export default {
       const result = document.getElementById('result');
       result.style.animationPlayState = 'running';
     },
+    // 点击某一个区块打开完整信息
+    clickBlock(block) {
+      this.dialogVisible = true;
+      this.dialogBlock = block;
+    },
   },
   computed: {
     getOnChainText() {
@@ -206,6 +236,11 @@ export default {
   cursor: pointer;
 }
 
+#onChain:hover,
+#history:hover {
+  transform: scale(1.05, 1.05);
+}
+
 #onChain {
   right: 170px;
   top: 25px;
@@ -243,8 +278,6 @@ export default {
   left: -40px;
   width: 240px;
   height: 38px;
-  animation: fadeIn 1s;
-  /*animation-fill-mode: forwards;*/
 }
 
 #search {
@@ -290,13 +323,8 @@ export default {
   position: relative;
   margin: 0 100px;
   width: calc(100% - 200px);
-  /*height: calc(100vh - 260px);*/
   height: 800px;
   overflow-y: auto;
-  animation: fadeIn 1s;
-  /*animation: fadeIn 1s ease-in-out 0 1;*/
-  animation-play-state: paused;
-  /*animation-fill-mode: forwards;*/
 }
 
 /*.chains {
@@ -336,7 +364,18 @@ export default {
   height: 300px;
   border: 1px solid #194EA0;
   overflow: auto;
+  font-size: 18px;
+  text-align: left;
   color: #000;
+  cursor: pointer;
+}
+
+.block:hover {
+  border: 1px solid #3399FF;
+}
+
+.block-item {
+  margin: 5px;
 }
 
 .horizontal {
@@ -365,13 +404,6 @@ export default {
 @keyframes centerDown {
   0 {margin-top: 0;}
   100% {margin-top: 200px;}
-}
-
-@keyframes fadeIn {
-/*  0 {opacity: 0;}
-  100% {opacity: 1;}*/
-  0 {color: red;}
-  100% {color: yellow;}
 }
 </style>
 
@@ -414,5 +446,43 @@ export default {
 
 #result > .stepsContainer > .el-steps > .el-step > .el-step__main > .el-step__description {
   color: #194EA0;
+}
+
+/*弹框部分*/
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+  text-align: left;
+  padding-left: 22px;
+  border-bottom: 1px solid #194EA0;
+  font-weight: bold;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+  font-size: 28px;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__body {
+  padding: 20px;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__body > .dialog-block-item {
+  margin: 5px;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__footer > .dialog-footer > .el-button {
+  background-color: transparent;
+  border-image: linear-gradient(45deg, #D70C18, #194EA0) 10 10;
+  color: #000;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__footer > .dialog-footer > .el-button:hover {
+  transform: scale(1.05, 1.05);
 }
 </style>
