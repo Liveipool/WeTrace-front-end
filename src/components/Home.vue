@@ -1,23 +1,44 @@
 <template>
   <div class="home">
-    <img class="homeBackground" v-show="language === 'Chinese'" src="../../static/homeBackground.jpg">
-    <img class="homeBackground" v-if="language === 'English'" src="../../static/homeBackgroundEnglish.jpg">
-    <div id="languages" @click="chooseLanguage">
+    <img
+      class="homeBackground" v-show="language === 'Chinese' && !showResult" src="../../static/homeBackground.jpg">
+    <img
+      class="homeBackground" v-show="language === 'English' && !showResult"
+      src="../../static/homeBackgroundEnglish.jpg">
+    <div id="languages" @click="chooseLanguage" v-show="!showResult">
       <div id="Chinese">中文</div>
       <div id="English">English</div>
     </div>
-    <img class="history" @click="searchHistory" v-show="language === 'Chinese'" src="../../static/history.png">
-    <img class="history" @click="searchHistory" v-show="language === 'English'" src="../../static/historyEnglish.png">
-    <img class="onChain" @click="goOnChain" v-show="language === 'Chinese'" src="../../static/onChain.png">
-    <img class="onChain" @click="goOnChain" v-show="language === 'English'" src="../../static/onChainEnglish.png">
+    <img
+      class="history" @click="searchHistory" id="history"
+      v-show="language === 'Chinese'" src="../../static/history.png">
+    <img
+      class="history" @click="searchHistory" id="historyEnglish"
+      v-show="language === 'English'" src="../../static/historyEnglish.png">
+    <img
+      class="onChain" @click="goOnChain" id="onChain"
+      v-show="language === 'Chinese'" src="../../static/onChain.png">
+    <img
+      class="onChain" @click="goOnChain" id="onChainEnglish"
+      v-show="language === 'English'" src="../../static/onChainEnglish.png">
     <div id="search">
       <input
         type="text" name="searchId"
         id="searchId" :placeholder="getPlaceHolder"
         @keyup="keyUpEnter" autofocus="autofocus">
-      <img src="../../static/searchButton.png" id="searchButton" @click='searchResult'>
+      <img
+        src="../../static/searchButton.png"
+        id="searchButton" @click='searchResult'>
     </div>
-    <div id="emptyResult" v-show="showEmptyHint && result.length === 0">{{ getEmptyResult }}</div>
+    <div
+      id="emptyResult" v-show="showEmptyHint && result.length === 0">
+    {{ getEmptyResult }}</div>
+
+    <img
+      class="homeBackground" v-show="showResult"
+      src="../../static/homeBackgroundAfterSearch.jpg">
+
+    <div class="blocks"></div>
   </div>
 </template>
 
@@ -80,17 +101,31 @@ export default {
       // 从后端取到搜索结果
       // const test = this.emptyRe;
       const test = this.blocks;
-      if (test.length !== 0) {
+      if (test.length === 0) {
         this.showEmptyHint = true;
       } else {
         this.showResult = true;
-        // this.centerAnimate();
+        this.buttonAnimate();
+        this.searchAnimate();
       }
     },
-    // 控制logo和输入框的动画
-    centerAnimate() {
-      const center = document.getElementById('center');
-      center.style.animationPlayState = 'running';
+    // 控制两个跳转按钮的动画
+    buttonAnimate() {
+      const history = document.getElementById('history');
+      const historyEnglish = document.getElementById('historyEnglish');
+      const onChain = document.getElementById('onChain');
+      const onChainEnglish = document.getElementById('onChainEnglish');
+      history.style.animationPlayState = 'running';
+      historyEnglish.style.animationPlayState = 'running';
+      onChain.style.animationPlayState = 'running';
+      onChainEnglish.style.animationPlayState = 'running';
+    },
+    // 控制搜索框的动画
+    searchAnimate() {
+      const search = document.getElementById('search');
+      const searchButton = document.getElementById('searchButton');
+      search.style.animationPlayState = 'running';
+      searchButton.style.animationPlayState = 'running';
     },
   },
   computed: {
@@ -150,6 +185,9 @@ export default {
   width: 7%;
   height: 5%;
   cursor: pointer;
+  animation: buttonUp 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 .onChain {
@@ -159,6 +197,9 @@ export default {
   width: 5%;
   height: 5%;
   cursor: pointer;
+  animation: buttonUp 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 #search {
@@ -167,14 +208,17 @@ export default {
   top: 25%;
   width: 30%;
   height: 5%;
+  animation: searchAnimate 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 #searchId {
   display: inline-block;
   margin: 0 auto;
-  padding: 5px;
+  padding: 3px;
   border: 0;
-  border-bottom: 1px solid #194EA0;
+  border-bottom: 2px solid #58f9f1;
   background-color: transparent;
   width: 80%;
   height: 80%;
@@ -186,7 +230,7 @@ export default {
   color: #e0e0e0;
 }
 #searchId:hover {
-  border-bottom: 1px solid #3399FF;
+  border-bottom: 2px solid #3399FF;
 }
 
 #searchButton {
@@ -197,6 +241,9 @@ export default {
   width: 6%;
   height: 65%;
   cursor: pointer;
+  animation: searchButtonAnimate 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 #emptyResult {
@@ -205,5 +252,19 @@ export default {
   top: 32%;
   font-size: 18px;
   color: #fff;
+}
+
+@keyframes buttonUp {
+  0 {top: 15%;}
+  100% {top: 10%;}
+}
+
+@keyframes searchAnimate {
+  0 {top: 25%; width: 30%; left: 60%;}
+  100% {top: 15%; width: 16%; left: 71.5%;}
+}
+@keyframes searchButtonAnimate {
+  0 {width: 6%; height: 65%;}
+  100% {width: 7%; height: 50%;}
 }
 </style>
