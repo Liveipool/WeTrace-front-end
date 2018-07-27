@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <animation-page></animation-page>
+    <!-- <animation-page></animation-page> -->
 
     <div id="headBar">
       <el-select class='language' v-model="language" placeholder="语言">
@@ -31,7 +31,7 @@
 
     <div id="emptyResult" v-show="showEmptyHint && result.length === 0">{{ getEmptyResult }}</div>
 
-    <div id="result" v-if="showResult">
+    <div id="result" v-show="showResult">
 <!--       <div class="stepsContainer" :style="{height: `${Math.ceil(blocks.length / 3) * 200}px`}">
         <el-steps direction="vertical">
           <el-step title="" description="2018/7"></el-step>
@@ -59,10 +59,10 @@
           <div class="block-item">经办人: {{block.handler}}</div>
           <div class="block-item">经办时间: {{block.handleTime}}</div>
           <div class="block-item">本站Id: {{block.currentNodeId}}</div>
-          <div class="block-item">本站名称: {{block.currentNodeName}}</div>
+          <!-- <div class="block-item">本站名称: {{block.currentNodeName}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">下站Id: {{block.nextNodeId}}</div>
-          <div class="block-item">下站名称: {{block.nextNodeName}}</div>
+          <!-- <div class="block-item">下站名称: {{block.nextNodeName}}</div> -->
           <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
         </div>
         <div
@@ -80,21 +80,21 @@
         :visible.sync="dialogVisible"
         width="30%"
         :show-close="false">
-            <div class="dialog-block-item">商家类型: {{this.dialogBlock.businessType}}</div>
-            <div class="dialog-block-item">物品Id: {{this.dialogBlock.itemId}}</div>
-            <div class="dialog-block-item">条形码: {{this.dialogBlock.barcode}}</div>
-            <div class="dialog-block-item">产地: {{this.dialogBlock.origin}}</div>
-            <div class="dialog-block-item">质检Id: {{this.dialogBlock.qualityId}}</div>
-            <div class="dialog-block-item">工厂认证证书Id: {{this.dialogBlock.authenticationId}}</div>
-            <div class="dialog-block-item">物流单号: {{this.dialogBlock.logistics}}</div>
-            <div class="dialog-block-item">本站地址: {{this.dialogBlock.currentNodeLocation}}</div>
-            <div class="dialog-block-item">经办人: {{this.dialogBlock.handler}}</div>
-            <div class="dialog-block-item">经办时间: {{this.dialogBlock.handleTime}}</div>
-            <div class="dialog-block-item">本站Id: {{this.dialogBlock.currentNodeId}}</div>
-            <div class="dialog-block-item">本站名称: {{this.dialogBlock.currentNodeName}}</div>
-            <div class="dialog-block-item">下站Id: {{this.dialogBlock.nextNodeId}}</div>
-            <div class="dialog-block-item">下站名称: {{this.dialogBlock.nextNodeName}}</div>
-            <div class="dialog-block-item">下站地址: {{this.dialogBlock.nextNodeLocation}}</div>
+          <div class="dialog-block-item">商家类型: {{this.dialogBlock.businessType}}</div>
+          <div class="dialog-block-item">物品Id: {{this.dialogBlock.itemId}}</div>
+          <div class="dialog-block-item">条形码: {{this.dialogBlock.barcode}}</div>
+          <div class="dialog-block-item">产地: {{this.dialogBlock.origin}}</div>
+          <div class="dialog-block-item">质检Id: {{this.dialogBlock.qualityId}}</div>
+          <div class="dialog-block-item">工厂认证证书Id: {{this.dialogBlock.authenticationId}}</div>
+          <div class="dialog-block-item">物流单号: {{this.dialogBlock.logistics}}</div>
+          <div class="dialog-block-item">本站地址: {{this.dialogBlock.currentNodeLocation}}</div>
+          <div class="dialog-block-item">经办人: {{this.dialogBlock.handler}}</div>
+          <div class="dialog-block-item">经办时间: {{this.dialogBlock.handleTime}}</div>
+          <div class="dialog-block-item">本站Id: {{this.dialogBlock.currentNodeId}}</div>
+          <div class="dialog-block-item">本站名称: {{this.dialogBlock.currentNodeName}}</div>
+          <div class="dialog-block-item">下站Id: {{this.dialogBlock.nextNodeId}}</div>
+          <div class="dialog-block-item">下站名称: {{this.dialogBlock.nextNodeName}}</div>
+          <div class="dialog-block-item">下站地址: {{this.dialogBlock.nextNodeLocation}}</div>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
@@ -137,20 +137,20 @@ export default {
   methods: {
     // 点击上链按钮
     goOnChain() {
-      const login = true;
+      const login = false;
       if (login) {
         this.$router.push({ path: '/onChain' });
       } else {
-        this.$router.push({ path: '/login' });
+        this.$router.push({ path: '/login', query: { operation: 'onChain' } });
       }
     },
     // 点击上链历史按钮
     searchHistory() {
-      const login = true;
+      const login = false;
       if (login) {
         this.$router.push({ path: '/history' });
       } else {
-        this.$router.push({ path: '/login' });
+        this.$router.push({ path: '/login', query: { operation: 'history' } });
       }
     },
     // 输入框里按回车
@@ -328,10 +328,11 @@ export default {
   margin: 0 100px;
   width: calc(100% - 200px);
   height: 800px;
+  opacity: 0;
   overflow-y: auto;
-  animation: showResult 0.5s ease-out 10s 1;
-  /*animation-play-state: paused;*/
-
+  animation: showResult 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 /*.chains {
@@ -424,8 +425,8 @@ export default {
 }
 
 @keyframes showResult {
-  0 {display: none;}
-  100% {display: block;}
+  0 {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 </style>
