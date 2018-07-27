@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- <animation-page></animation-page> -->
+    <animation-page></animation-page>
 
     <div id="headBar">
       <el-select class='language' v-model="language" placeholder="语言">
@@ -47,19 +47,21 @@
 
       <div class="blocks" v-for="(block, index) in blocks" :key="index.toString()">
         <div class="block" @click="clickBlock(block)">
+          <div class="block-item-head">{{block.businessType}}</div>
           <!-- <div class="block-item">index: {{index}}</div> -->
           <div class="block-item">物品Id: {{block.itemId}}</div>
           <!-- <div class="block-item">条形码: {{block.barcode}}</div> -->
-          <div class="block-item">产地: {{block.origin}}</div>
-          <div class="block-item">质检Id: {{block.qualityId}}</div>
-          <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div>
-          <div class="block-item">物流单号: {{block.logistics}}</div>
+          <!-- <div class="block-item">产地: {{block.origin}}</div> -->
+          <!-- <div class="block-item">质检Id: {{block.qualityId}}</div> -->
+          <!-- <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div> -->
+          <!-- <div class="block-item">物流单号: {{block.logistics}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">经办人: {{block.handler}}</div>
           <div class="block-item">经办时间: {{block.handleTime}}</div>
-          <!-- <div class="block-item">本站id: {{block.currentNodeId}}</div> -->
+          <div class="block-item">本站id: {{block.currentNodeId}}</div>
           <div class="block-item">本站名称: {{block.currentNodeName}}</div>
-          <!-- <div class="block-item">下站Id: {{block.nextNodeId}}</div> -->
+          <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
+          <div class="block-item">下站Id: {{block.nextNodeId}}</div>
           <div class="block-item">下站名称: {{block.nextNodeName}}</div>
           <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
         </div>
@@ -78,6 +80,7 @@
         :visible.sync="dialogVisible"
         width="30%"
         :show-close="false">
+            <div class="dialog-block-item">商家类型: {{this.dialogBlock.businessType}}</div>
             <div class="dialog-block-item">物品Id: {{this.dialogBlock.itemId}}</div>
             <div class="dialog-block-item">条形码: {{this.dialogBlock.barcode}}</div>
             <div class="dialog-block-item">产地: {{this.dialogBlock.origin}}</div>
@@ -254,7 +257,7 @@ export default {
 #center {
   margin: 170px auto 0 auto;
   width: 800px;
-  height: 200px;
+  height: 170px;
   animation: centerUp 0.5s ease-out 1;
   animation-play-state: paused;
   animation-fill-mode: forwards;
@@ -363,6 +366,7 @@ export default {
   width: 350px;
   height: 300px;
   border: 1px solid #194EA0;
+  /*border-image: linear-gradient(45deg, #D70C18, #194EA0) 350 350;*/
   overflow: auto;
   font-size: 18px;
   text-align: left;
@@ -371,7 +375,16 @@ export default {
 }
 
 .block:hover {
-  border: 1px solid #3399FF;
+  /*border: 1px solid #D70C18;*/
+  transform: scale(1.01, 1.01);
+}
+
+.block-item-head {
+  /*margin: 5px;*/
+  padding: 5px;
+  border-bottom: 1px solid #194EA0;
+  font-size: 24px;
+  color: #194EA0;
 }
 
 .block-item {
@@ -471,7 +484,7 @@ export default {
   margin: 5px;
 }
 
-#result > .el-dialog__wrapper > .el-dialog > .el-dialog__footer > .dialog-footer > .el-button {
+#result > .el-dialog__wrapper > .el-dialog >.el-dialog__footer > .dialog-footer > .el-button {
   background-color: transparent;
   border-image: linear-gradient(45deg, #D70C18, #194EA0) 10 10;
   color: #000;
@@ -482,7 +495,8 @@ export default {
   cursor: pointer;
 }
 
-#result > .el-dialog__wrapper > .el-dialog > .el-dialog__footer > .dialog-footer > .el-button:hover {
+#result > .el-dialog__wrapper > .el-dialog >
+.el-dialog__footer > .dialog-footer > .el-button:hover {
   transform: scale(1.05, 1.05);
 }
 </style>
