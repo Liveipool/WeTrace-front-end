@@ -49,19 +49,19 @@
         <div class="block" @click="clickBlock(block)">
           <div class="block-item-head">{{block.businessType}}</div>
           <!-- <div class="block-item">index: {{index}}</div> -->
-          <div class="block-item">物品Id: {{block.itemId}}</div>
+          <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
           <!-- <div class="block-item">条形码: {{block.barcode}}</div> -->
           <!-- <div class="block-item">产地: {{block.origin}}</div> -->
           <!-- <div class="block-item">质检Id: {{block.qualityId}}</div> -->
           <!-- <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div> -->
           <!-- <div class="block-item">物流单号: {{block.logistics}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
-          <div class="block-item">经办人: {{block.handler}}</div>
-          <div class="block-item">经办时间: {{block.handleTime}}</div>
-          <div class="block-item">本站Id: {{block.currentNodeId}}</div>
+          <div class="block-item">{{getHandler}}: {{block.handler}}</div>
+          <div class="block-item">{{getHandleTime}}: {{block.handleTime}}</div>
+          <div class="block-item">{{getCurrentNodeId}}: {{block.currentNodeId}}</div>
           <!-- <div class="block-item">本站名称: {{block.currentNodeName}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
-          <div class="block-item">下站Id: {{block.nextNodeId}}</div>
+          <div class="block-item">{{getNextNodeId}}: {{block.nextNodeId}}</div>
           <!-- <div class="block-item">下站名称: {{block.nextNodeName}}</div> -->
           <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
         </div>
@@ -76,25 +76,41 @@
       </div>
 
       <el-dialog
-        title="完整区块信息"
+        :title="this.getDialogTitle"
         :visible.sync="dialogVisible"
         width="30%"
-        :show-close="false">
-          <div class="dialog-block-item">商家类型: {{this.dialogBlock.businessType}}</div>
-          <div class="dialog-block-item">物品Id: {{this.dialogBlock.itemId}}</div>
-          <div class="dialog-block-item">条形码: {{this.dialogBlock.barcode}}</div>
-          <div class="dialog-block-item">产地: {{this.dialogBlock.origin}}</div>
-          <div class="dialog-block-item">质检Id: {{this.dialogBlock.qualityId}}</div>
-          <div class="dialog-block-item">工厂认证证书Id: {{this.dialogBlock.authenticationId}}</div>
-          <div class="dialog-block-item">物流单号: {{this.dialogBlock.logistics}}</div>
-          <div class="dialog-block-item">本站地址: {{this.dialogBlock.currentNodeLocation}}</div>
-          <div class="dialog-block-item">经办人: {{this.dialogBlock.handler}}</div>
-          <div class="dialog-block-item">经办时间: {{this.dialogBlock.handleTime}}</div>
-          <div class="dialog-block-item">本站Id: {{this.dialogBlock.currentNodeId}}</div>
-          <div class="dialog-block-item">本站名称: {{this.dialogBlock.currentNodeName}}</div>
-          <div class="dialog-block-item">下站Id: {{this.dialogBlock.nextNodeId}}</div>
-          <div class="dialog-block-item">下站名称: {{this.dialogBlock.nextNodeName}}</div>
-          <div class="dialog-block-item">下站地址: {{this.dialogBlock.nextNodeLocation}}</div>
+        :show-close="false"
+        :modal-append-to-body="false">
+          <div class="dialog-block-item">
+          {{this.getBusinessType}}: {{this.dialogBlock.businessType}}</div>
+          <div class="dialog-block-item">
+          {{this.getItemId}}: {{this.dialogBlock.itemId}}</div>
+          <div class="dialog-block-item">
+          {{this.getBarcode}}: {{this.dialogBlock.barcode}}</div>
+          <div class="dialog-block-item">
+          {{this.getOrigin}}: {{this.dialogBlock.origin}}</div>
+          <div class="dialog-block-item">
+          {{this.getQualityId}}: {{this.dialogBlock.qualityId}}</div>
+          <div class="dialog-block-item">
+          {{this.getAuthenticationId}}: {{this.dialogBlock.authenticationId}}</div>
+          <div class="dialog-block-item">
+          {{this.getLogistics}}: {{this.dialogBlock.logistics}}</div>
+          <div class="dialog-block-item">
+          {{this.getHandler}}: {{this.dialogBlock.handler}}</div>
+          <div class="dialog-block-item">
+          {{this.getHandleTime}}: {{this.dialogBlock.handleTime}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeId}}: {{this.dialogBlock.currentNodeId}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeName}}: {{this.dialogBlock.currentNodeName}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeLocation}}: {{this.dialogBlock.currentNodeLocation}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeId}}: {{this.dialogBlock.nextNodeId}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeName}}: {{this.dialogBlock.nextNodeName}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeLocation}}: {{this.dialogBlock.nextNodeLocation}}</div>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </span>
@@ -202,6 +218,54 @@ export default {
     },
     getEmptyResult() {
       return this.language === 'Chinese' ? '未查到相关数据，请检查ID是否正确...' : 'Data not found, please check...';
+    },
+    getDialogTitle() {
+      return this.language === 'Chinese' ? '完整区块信息' : 'Complete block infos';
+    },
+    getBusinessType() {
+      return this.language === 'Chinese' ? '商家类型' : 'businessType';
+    },
+    getItemId() {
+      return this.language === 'Chinese' ? '物品Id' : 'itemId';
+    },
+    getBarcode() {
+      return this.language === 'Chinese' ? '条形码' : 'barcode';
+    },
+    getOrigin() {
+      return this.language === 'Chinese' ? '产地' : 'origin';
+    },
+    getQualityId() {
+      return this.language === 'Chinese' ? '质检Id' : 'qualityId';
+    },
+    getAuthenticationId() {
+      return this.language === 'Chinese' ? '工厂认证证书Id' : 'authenticationId';
+    },
+    getLogistics() {
+      return this.language === 'Chinese' ? '物流单号' : 'logistics';
+    },
+    getCurrentNodeId() {
+      return this.language === 'Chinese' ? '本站Id' : 'currentNodeId';
+    },
+    getCurrentNodeName() {
+      return this.language === 'Chinese' ? '本站名称' : 'currentNodeName';
+    },
+    getCurrentNodeLocation() {
+      return this.language === 'Chinese' ? '本站地址' : 'currentNodeLocation';
+    },
+    getHandler() {
+      return this.language === 'Chinese' ? '经办人' : 'handler';
+    },
+    getHandleTime() {
+      return this.language === 'Chinese' ? '经办时间' : 'handleTime';
+    },
+    getNextNodeId() {
+      return this.language === 'Chinese' ? '下站Id' : 'nextNodeId';
+    },
+    getNextNodeName() {
+      return this.language === 'Chinese' ? '下站名称' : 'nextNodeName';
+    },
+    getNextNodeLocation() {
+      return this.language === 'Chinese' ? '下站地址' : 'nextNodeLocation';
     },
   },
 };
