@@ -175,12 +175,10 @@ export default {
         this.showEmptyHint = true;
       } else {
         // 真实查询接口
-        console.log('itemId: ', this.itemId);
         this.axios.post(`${constants.ip}/item/trace`, {
           itemId: this.itemId,
           userId: window.userId,
         }).then((response) => {
-          console.log('itemId response: ', response);
           this.blocks = response.data.data;
           if (this.blocks.length > 0) {
             this.nodeId = this.blocks[0].connectedNodeId;
@@ -189,8 +187,6 @@ export default {
           this.buttonAnimate();
           this.searchAnimate();
           this.resultAnimate();
-        }).catch((error) => {
-          console.log('itemId error: ', error);
         });
         // 不要接口
         // this.showResult = true;

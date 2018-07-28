@@ -137,9 +137,6 @@ export default {
     // 提交表单进行上链
     onChainSubmit() {
       // 真实接口
-      console.log('this.itemId: ', this.itemId, 'this.barcode: ',
-        this.barcode, 'this.currentNodeId: ', this.currentNodeId,
-        'this.handler: ', this.handler, 'this.nextNodeId: ', this.nextNodeId);
       this.axios.post(`${constants.ip}/upload`, {
         itemId: this.itemId,
         barcode: this.barcode,
@@ -148,7 +145,6 @@ export default {
         nextNodeId: this.nextNodeId,
         userId: window.userId,
       }, { xhrFields: {withCredentials:true} }).then((response) => {
-        console.log('upload response: ', response);
         this.dialogVisible = true;
       });
       // 不要接口

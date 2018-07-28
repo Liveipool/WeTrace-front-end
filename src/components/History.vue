@@ -127,7 +127,6 @@ export default {
       username: this.username,
       userId: window.userId,
     }).then((response) => {
-      console.log('history response: ', response);
       this.blocks = response.data.data;
       this.$message({
         message: '查询历史记录成功',
@@ -140,7 +139,6 @@ export default {
     // if (this.$route.query.newBlock) {
 
     //   const nodes = document.getElementsByClassName('block');
-    //   console.log('nodes: ', nodes);
     //   // nodes[0].style.animationName = 'fadeToggle';
     //   // nodes[0].style.animationDuration = '1s';
     //   // nodes[0].style.animationTimingFunction = 'ease-out';

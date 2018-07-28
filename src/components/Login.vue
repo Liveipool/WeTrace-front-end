@@ -36,13 +36,10 @@ export default {
   methods: {
     login() {
       // 真实接口
-      console.log('username: ', this.username, 'password: ', this.password);
       this.axios.post(`${constants.ip}/login`, {
         username: this.username,
       }).then((response) => {
-        console.log('login response: ', response);
         window.userId = response.data.data;
-        console.log('window.userId: ', window.userId);
         this.$router.push({ path: `${this.$route.query.operation}`, query: { username: this.username } });
         window.login = true;
       });
