@@ -92,7 +92,11 @@
           <div class="dialog-block-item">
           {{this.getItemId}}: {{this.dialogBlock.itemId}}</div>
           <div class="dialog-block-item">
+          {{this.getItemName}}: {{this.dialogBlock.itemName}}</div>
+          <div class="dialog-block-item">
           {{this.getOrigin}}: {{this.dialogBlock.origin}}</div>
+          <div class="dialog-block-item">
+          {{this.getBarcode}}: {{this.dialogBlock.barcode}}</div>
           <div class="dialog-block-item">
           {{this.getQualityId}}: {{this.dialogBlock.qualityId}}</div>
           <div class="dialog-block-item">
@@ -216,7 +220,7 @@ export default {
   },
   computed: {
     getPlaceHolder() {
-      return this.language === 'Chinese' ? '请输入物品ID一键溯源...' : 'Please enter ID to trace...';
+      return this.language === 'Chinese' ? '请输入商品ID一键溯源...' : 'Please enter ID to trace...';
     },
     getEmptyResult() {
       return this.language === 'Chinese' ? '未查到相关数据，请检查ID是否正确...' : 'Data not found, please check...';
@@ -228,10 +232,16 @@ export default {
       return this.language === 'Chinese' ? '商家类型' : 'businessType';
     },
     getItemId() {
-      return this.language === 'Chinese' ? '物品ID' : 'itemId';
+      return this.language === 'Chinese' ? '商品ID' : 'itemId';
+    },
+    getItemName() {
+      return this.language === 'Chinese' ? '商品名称' : 'itemName';
     },
     getOrigin() {
       return this.language === 'Chinese' ? '产地' : 'origin';
+    },
+    getBarcode() {
+      return this.language === 'Chinese' ? '产地' : 'barcode';
     },
     getQualityId() {
       return this.language === 'Chinese' ? '质检ID' : 'qualityId';

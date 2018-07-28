@@ -26,7 +26,7 @@
         <input class="content" type="text" name="currentNodeLocation" v-model="currentNodeLocation">
       </div>
       <div class="item">
-        <span class="title">物品ID</span>
+        <span class="title">商品ID</span>
         <input class="content" type="text" name="itemId" v-model="itemId">
       </div>
       <div class="item">
@@ -146,6 +146,7 @@ export default {
       this.currentNodeLocation = itemObj.currentNodeLocation;
       // this.itemId = itemObj.itemId;
       this.origin = itemObj.origin;
+      this.barcode = itemObj.barcode;
       this.qualityId = itemObj.qualityId;
       this.authenticationId = itemObj.authenticationId;
       // this.transactionId = itemObj.transactionId;
