@@ -51,8 +51,8 @@
           <!-- <div class="block-item">index: {{index}}</div> -->
           <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
           <!-- <div class="block-item">产地: {{block.origin}}</div> -->
-          <!-- <div class="block-item">质检Id: {{block.qualityId}}</div> -->
-          <!-- <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div> -->
+          <!-- <div class="block-item">质检ID: {{block.qualityId}}</div> -->
+          <!-- <div class="block-item">工厂认证证书ID: {{block.authenticationId}}</div> -->
           <!-- <div class="block-item">交易单号: {{block.transactionId}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">{{getHandler}}: {{block.handler}}</div>
@@ -223,22 +223,22 @@ export default {
       return this.language === 'Chinese' ? '商家类型' : 'businessType';
     },
     getItemId() {
-      return this.language === 'Chinese' ? '物品Id' : 'itemId';
+      return this.language === 'Chinese' ? '物品ID' : 'itemId';
     },
     getOrigin() {
       return this.language === 'Chinese' ? '产地' : 'origin';
     },
     getQualityId() {
-      return this.language === 'Chinese' ? '质检Id' : 'qualityId';
+      return this.language === 'Chinese' ? '质检ID' : 'qualityId';
     },
     getAuthenticationId() {
-      return this.language === 'Chinese' ? '工厂认证证书Id' : 'authenticationId';
+      return this.language === 'Chinese' ? '工厂认证证书ID' : 'authenticationId';
     },
     getTransactionId() {
       return this.language === 'Chinese' ? '交易单号' : 'transactionId';
     },
     getCurrentNodeId() {
-      return this.language === 'Chinese' ? '本站Id' : 'currentNodeId';
+      return this.language === 'Chinese' ? '本站ID' : 'currentNodeId';
     },
     getCurrentNodeName() {
       return this.language === 'Chinese' ? '本站名称' : 'currentNodeName';
@@ -253,7 +253,7 @@ export default {
       return this.language === 'Chinese' ? '经办时间' : 'handleTime';
     },
     getNextNodeId() {
-      return this.language === 'Chinese' ? '下站Id' : 'nextNodeId';
+      return this.language === 'Chinese' ? '下站ID' : 'nextNodeId';
     },
     getNextNodeName() {
       return this.language === 'Chinese' ? '下站名称' : 'nextNodeName';

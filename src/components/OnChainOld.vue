@@ -8,17 +8,17 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <input id="itemId" type="text" name="itemId" placeholder="请输入物品Id">
+    <input id="itemId" type="text" name="itemId" placeholder="请输入物品ID">
     <input id="origin" type="text" name="origin" placeholder="请输入产地">
-    <input id="qualityId" type="text" name="qualityId" placeholder="请输入质检Id">
-    <input id="authenticationId" type="text" name="authenticationId" placeholder="请输入工厂认证证书Id">
+    <input id="qualityId" type="text" name="qualityId" placeholder="请输入质检ID">
+    <input id="authenticationId" type="text" name="authenticationId" placeholder="请输入工厂认证证书ID">
     <input id="transactionId" type="text" name="transactionId" placeholder="请输入交易单号">
-    <input id="currentNodeId" type="text" name="currentNodeId" placeholder="请输入本站id">
+    <input id="currentNodeId" type="text" name="currentNodeId" placeholder="请输入本站ID">
     <input id="currentNodeName" type="text" name="currentNodeName" placeholder="请输入本站名称">
     <input id="currentNodeLocation" type="text" name="currentNodeLocation" placeholder="请输入本站地址">
     <input id="handler" type="text" name="handler" placeholder="请输入经办人">
     <input id="handleTime" type="text" name="handleTime" placeholder="请输入经办时间">
-    <input id="nextNodeId" type="text" name="nextNodeId" placeholder="请输入下站Id">
+    <input id="nextNodeId" type="text" name="nextNodeId" placeholder="请输入下站ID">
     <input id="nextNodeName" type="text" name="nextNodeName" placeholder="请输入下站名称">
     <input id="nextNodeLocation" type="text" name="nextNodeLocation" placeholder="请输入下站地址">
   </div>

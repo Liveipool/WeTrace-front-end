@@ -24,7 +24,7 @@
       v-show="language === 'English'" src="../../static/historyEnglish.png">
     <div id="search">
       <input
-        type="text" name="searchId"
+        type="text" name="searchId" v-model="itemId"
         id="searchId" :placeholder="getPlaceHolder"
         @keyup="keyUpEnter" autofocus="autofocus">
       <img
@@ -119,6 +119,7 @@ export default {
       blocks,
       dialogVisible: false,
       dialogBlock: {},
+      itemId: '',
     };
   },
   methods: {
@@ -165,6 +166,19 @@ export default {
       if (test.length === 0) {
         this.showEmptyHint = true;
       } else {
+        // 真实查询接口
+        // console.log('itemId: ', this.itemId);
+        // this.axios.post('http://172.20.10.2:8080/item/trace', {
+        //   itemId: this.itemId,
+        //   userId: window.userId,
+        // }).then((response) => {
+        //   console.log('item response: ', response);
+        //   this.showResult = true;
+        //   this.buttonAnimate();
+        //   this.searchAnimate();
+        //   this.resultAnimate();
+        // });
+        // 不要接口
         this.showResult = true;
         this.buttonAnimate();
         this.searchAnimate();

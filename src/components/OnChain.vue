@@ -9,58 +9,62 @@
     <div id="table">
       <div class="item">
         <span class="title">商家类型</span>
-        <input class="content" type="text" name="businessType" :value="businessType">
+        <input class="content" type="text" name="businessType" v-model="businessType">
       </div>
       <div class="item">
-        <span class="title">本站Id</span>
+        <span class="title">本站ID</span>
         <input
           class="content" type="text" name="currentNodeId"
-          :value="currentNodeId" autofocus="autofocus">
+          v-model="currentNodeId" autofocus="autofocus">
       </div>
       <div class="item">
         <span class="title">本站名称</span>
-        <input class="content" type="text" name="currentNodeName" :value="currentNodeName">
+        <input class="content" type="text" name="currentNodeName" v-model="currentNodeName">
       </div>
       <div class="item">
         <span class="title">本站地址</span>
-        <input class="content" type="text" name="currentNodeLocation" :value="currentNodeLocation">
+        <input class="content" type="text" name="currentNodeLocation" v-model="currentNodeLocation">
       </div>
       <div class="item">
-        <span class="title">物品Id</span>
-        <input class="content" type="text" name="itemId" :value="itemId">
+        <span class="title">物品ID</span>
+        <input class="content" type="text" name="itemId" v-model="itemId">
       </div>
       <div class="item">
         <span class="title">产地</span>
-        <input class="content" type="text" name="origin" :value="origin">
+        <input class="content" type="text" name="origin" v-model="origin">
       </div>
       <div class="item">
-        <span class="title">质检Id</span>
-        <input class="content" type="text" name="qualityId" :value="qualityId">
+        <span class="title">条形码</span>
+        <input class="content" type="text" name="barcode" v-model="barcode">
       </div>
       <div class="item">
-        <span class="title">证书Id</span>
-        <input class="content" type="text" name="authenticationId" :value="authenticationId">
+        <span class="title">质检ID</span>
+        <input class="content" type="text" name="qualityId" v-model="qualityId">
       </div>
       <div class="item">
-        <span class="title">下站Id</span>
-        <input class="content" type="text" name="nextNodeId" :value="nextNodeId">
+        <span class="title">证书ID</span>
+        <input class="content" type="text" name="authenticationId" v-model="authenticationId">
+      </div>
+      <div class="item">
+        <span class="title">下站ID</span>
+        <input class="content" type="text" name="nextNodeId" v-model="nextNodeId">
       </div>
       <div class="item">
         <span class="title">下站名称</span>
-        <input class="content" type="text" name="nextNodeName" :value="nextNodeName">
+        <input class="content" type="text" name="nextNodeName" v-model="nextNodeName">
       </div>
       <div class="item">
         <span class="title">下站地址</span>
-        <input class="content" type="text" name="nextNodeLocation" :value="nextNodeLocation">
+        <input class="content" type="text" name="nextNodeLocation" v-model="nextNodeLocation">
       </div>
       <div class="item">
         <span class="title">经手人</span>
-        <input class="content" type="text" name="handler" :value="handler">
+        <input class="content" type="text" name="handler" v-model="handler">
       </div>
-      <div class="item">
+<!--       <div class="item">
         <span class="title">经办时间</span>
-        <input class="content" type="text" name="handleTime" :value="handleTime">
-      </div>
+        <input class="content" type="text" name="handleTime" v-model="handleTime">
+      </div> -->
     </div>
 
     <img
@@ -80,6 +84,7 @@ export default {
       businessType: '',
       itemId: '',
       origin: '',
+      barcode: '',
       qualityId: '',
       authenticationId: '',
       transactionId: '',
@@ -107,6 +112,25 @@ export default {
     },
     // 提交表单进行上链
     onChainSubmit() {
+      // 真实接口
+      // console.log('this.itemId: ', this.itemId, 'this.barcode: ',
+      //   this.barcode, 'this.currentNodeId: ', this.currentNodeId,
+      //   'this.handler: ', this.handler, 'this.nextNodeId: ', this.nextNodeId);
+      // this.axios.post('http://172.20.10.2:8080/upload', {
+      //   itemId: this.itemId,
+      //   barcode: this.barcode,
+      //   currentNodeId: this.currentNodeId,
+      //   handler: this.handler,
+      //   nextNodeId: this.nextNodeId,
+      //   userId: window.userId,
+      // }, { xhrFields: {withCredentials:true} }).then((response) => {
+      //   console.log('upload response: ', response);
+      //   this.$message({
+      //     message: '上链成功',
+      //     type: 'success',
+      //   });
+      // });
+      // 不要接口
       this.$message({
         message: '上链成功',
         type: 'success',
@@ -120,7 +144,7 @@ export default {
       this.currentNodeId = itemObj.currentNodeId;
       this.currentNodeName = itemObj.currentNodeName;
       this.currentNodeLocation = itemObj.currentNodeLocation;
-      this.itemId = itemObj.itemId;
+      // this.itemId = itemObj.itemId;
       this.origin = itemObj.origin;
       this.qualityId = itemObj.qualityId;
       this.authenticationId = itemObj.authenticationId;
@@ -182,13 +206,13 @@ export default {
   display: inline-block;
   margin: 15px 5% 15px 5%;
   width: 33%;
-  height: 5%;
+  height: 6%;
   font-size: 22px;
 }
 
 .title {
   position: relative;
-  top: 10%;
+  top: 12%;
   display: inline-block;
   width: 25%;
   color: #58f9f1;
@@ -196,9 +220,9 @@ export default {
 
 .content {
   width: 70%;
-  height: 50%;
+  height: 60%;
   padding-left: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
   border: 0;
   border-bottom: 1px solid #58f9f1;
   background-color: transparent;

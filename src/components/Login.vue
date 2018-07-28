@@ -7,14 +7,15 @@
       <img id="iconUser" src="../../static/iconUser.png">
       <input
         id="username" type="text" name="username"
-        placeholder="用户名" autofocus="autofocus">
+        placeholder="用户名" autofocus="autofocus"
+        v-model="username">
     </div>
     <div id="passwordContainer">
       <img id="iconLock" src="../../static/iconLock.png">
       <input
         id="password" type="password" name="password"
         placeholder="密码" autocomplete="new-password"
-        @keyup="enterLogin">
+        @keyup="enterLogin" v-model="password">
       <img id="iconEye" src="../../static/iconEye.png">
     </div>
     <img id="loginButton" src="../../static/loginButton.png" @click="login">
@@ -26,11 +27,22 @@ export default {
   name: 'Login',
   data() {
     return {
-      msg: '',
+      username: '',
+      password: '',
     };
   },
   methods: {
     login() {
+      // 真实接口
+      // console.log('username: ', this.username, 'password: ', this.password);
+      // this.axios.post('http://172.20.10.2:8080/login', {
+      //   username: this.username,
+      // }).then((response) => {
+      //   window.userId = response.data.data;
+      //   this.$router.push({ path: `${this.$route.query.operation}` });
+      //   window.login = true;
+      // });
+      // 不要接口
       this.$router.push({ path: `${this.$route.query.operation}` });
       window.login = true;
     },
