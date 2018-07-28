@@ -16,7 +16,7 @@
           <div
             class="block" @click="clickBlock(block)"
             v-for="(block, index) in blocks" :key="index.toString()">
-            <div class="block-item-head">交易单号: {{block.transactionId}}</div>
+            <div class="block-item-head">交易单号:{{block.transactionId}}</div>
             <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
             <!-- <div class="block-item">{{getBusinessType}}: {{block.businessType}}</div> -->
             <!-- <div class="block-item">index: {{index}}</div> -->
@@ -29,7 +29,7 @@
             <div class="block-item">{{getNextNodeId}}: {{block.nextNodeId}}</div>
             <div class="block-item">下站名称: {{block.nextNodeName}}</div>
             <div class="block-item">{{getHandler}}: {{block.handler}}</div>
-            <div class="block-item">{{getHandleTime}}: {{block.handleTime}}</div>
+            <div class="block-item">{{getHandleTime}}: {{getFormatTime(block.handleTime)}}</div>
 <!--             <div class="block-item">{{getCurrentNodeId}}: {{block.currentNodeId}}</div>
             <div class="block-item">本站名称: {{block.currentNodeName}}</div> -->
             <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
@@ -57,7 +57,7 @@
           <div class="dialog-block-item">
           {{this.getHandler}}: {{this.dialogBlock.handler}}</div>
           <div class="dialog-block-item">
-          {{this.getHandleTime}}: {{this.dialogBlock.handleTime}}</div>
+          {{this.getHandleTime}}: {{this.getFormatTime(this.dialogBlock.handleTime)}}</div>
           <div class="dialog-block-item">
           {{this.getOrigin}}: {{this.dialogBlock.origin}}</div>
           <div class="dialog-block-item">
@@ -106,6 +106,14 @@ export default {
       } else {
         this.$router.push({ path: '/login', query: { operation: 'onChain' } });
       }
+    },
+    // 将时间从时间戳转为yyyy-mm-dd
+    getFormatTime(time) {
+      const date = new Date(parseInt(time));
+      const y = date.getFullYear() + '';
+      const m = date.getMonth()+ 1 + '';
+      const d = date.getDate() + '';
+      return `${y}-${m}-${d}`;
     },
     // 点击某一个区块打开完整信息
     clickBlock(block) {
@@ -281,13 +289,18 @@ export default {
 }
 
 .block-item-head {
+  /*display: inline-block;*/
   /*margin: 10px;*/
   margin-bottom: 15px;
   padding-bottom: 10px;
+  height: 35px;
   /*padding: 5px;*/
   border-bottom: 1px solid #fff;
   font-size: 22px;
   color: #fff;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .block-item {

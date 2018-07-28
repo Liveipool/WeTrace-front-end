@@ -35,6 +35,8 @@
       id="emptyResult" v-show="showEmptyHint && result.length === 0">
     {{ getEmptyResult }}</div>
 
+    <div id="nodeId" v-show="showResult">当前数据源: {{nodeId}}</div>
+
     <img
       class="homeBackground" v-show="showResult"
       src="../../static/searchAndHistoryBackground.jpg">
@@ -60,7 +62,7 @@
             <!-- <div class="block-item">下站名称: {{block.nextNodeName}}</div> -->
             <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
             <div class="block-item">{{getHandler}}: {{block.handler}}</div>
-            <div class="block-item">{{getHandleTime}}: {{block.handleTime}}</div>
+            <div class="block-item">{{getHandleTime}}: {{getFormatTime(block.handleTime)}}</div>
           </div>
       </div>
       <el-dialog
@@ -88,7 +90,7 @@
           <div class="dialog-block-item">
           {{this.getHandler}}: {{this.dialogBlock.handler}}</div>
           <div class="dialog-block-item">
-          {{this.getHandleTime}}: {{this.dialogBlock.handleTime}}</div>
+          {{this.getHandleTime}}: {{this.getFormatTime(this.dialogBlock.handleTime)}}</div>
           <div class="dialog-block-item">
           {{this.getItemId}}: {{this.dialogBlock.itemId}}</div>
           <div class="dialog-block-item">
@@ -106,8 +108,6 @@
         </span>
       </el-dialog>
     </div>
-
-    <div id="nodeId" v-show="showResult">当前数据源: {{nodeId}}</div>
   </div>
 </template>
 
@@ -182,6 +182,9 @@ export default {
         }).then((response) => {
           console.log('itemId response: ', response);
           this.blocks = response.data.data;
+          if (this.blocks.length > 0) {
+            this.nodeId = this.blocks[0].connectedNodeId;
+          }
           this.showResult = true;
           this.buttonAnimate();
           this.searchAnimate();
@@ -218,6 +221,14 @@ export default {
     resultAnimate() {
       const result = document.getElementById('result');
       result.style.animationPlayState = 'running';
+    },
+    // 将时间从时间戳转为yyyy-mm-dd
+    getFormatTime(time) {
+      const date = new Date(parseInt(time));
+      const y = date.getFullYear() + '';
+      const m = date.getMonth()+ 1 + '';
+      const d = date.getDate() + '';
+      return `${y}-${m}-${d}`;
     },
     // 点击某一个区块打开完整信息
     clickBlock(block) {
@@ -401,7 +412,7 @@ export default {
 
 #emptyResult {
   position: absolute;
-  left: 62%;
+  left: 72%;
   top: 32%;
   font-size: 18px;
   color: #fff;
@@ -461,6 +472,7 @@ export default {
 }
 
 #nodeId {
+  z-index: 0;
   position: absolute;
   left: 5.5%;
   top: 16%;
