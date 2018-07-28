@@ -140,8 +140,7 @@ export default {
     },
     // 点击上链按钮
     goOnChain() {
-      const login = false;
-      if (login) {
+      if (window.login) {
         this.$router.push({ path: '/onChain' });
       } else {
         this.$router.push({ path: '/login', query: { operation: 'onChain' } });
@@ -149,8 +148,7 @@ export default {
     },
     // 点击上链历史按钮
     searchHistory() {
-      const login = false;
-      if (login) {
+      if (window.login) {
         this.$router.push({ path: '/history' });
       } else {
         this.$router.push({ path: '/login', query: { operation: 'history' } });
@@ -307,10 +305,10 @@ export default {
 
 .history {
   position: absolute;
-  left: 72%;
+  left: 71%;
   top: 15%;
-  width: 7%;
-  height: 5%;
+  width: 8%;
+  height: 6%;
   cursor: pointer;
   animation: buttonUp 1s ease-out 1;
   animation-play-state: paused;
@@ -319,10 +317,10 @@ export default {
 
 .onChain {
   position: absolute;
-  left: 81%;
+  left: 80%;
   top: 15%;
-  width: 5%;
-  height: 5%;
+  width: 6%;
+  height: 6%;
   cursor: pointer;
   animation: buttonUp 1s ease-out 1;
   animation-play-state: paused;
@@ -402,7 +400,7 @@ export default {
 .block {
   position: relative;
   display: inline-block;
-  margin: 0 50px 50px 0;
+  margin: 0 50px 28px 0;
   padding: 10px 20px 20px 20px;
   width: 24%;
   height: 30%;
@@ -415,8 +413,7 @@ export default {
 }
 
 .block:hover {
-  /*border: 1px solid #D70C18;*/
-  transform: scale(1.01, 1.01);
+  background-color: rgba(41, 171, 226, 0.32);
 }
 
 .block-item-head {
@@ -435,12 +432,12 @@ export default {
 
 @keyframes buttonUp {
   0 {top: 15%;}
-  100% {top: 10%;}
+  100% {top: 9%;}
 }
 
 @keyframes searchAnimate {
   0 {top: 25%; width: 30%; left: 60%;}
-  100% {top: 15%; width: 16%; left: 71.5%;}
+  100% {top: 15%; width: 17%; left: 71%;}
 }
 
 @keyframes searchButtonAnimate {
@@ -456,42 +453,59 @@ export default {
 
 <style>
 /*弹框部分*/
+#result > .el-dialog__wrapper > .el-dialog {
+  padding: 15px;
+  background-color: transparent;
+  background-color: rgba(41, 171, 226, 0.22);
+  color: #fff;
+  border: 2px solid #58f9f1;
+  border-radius: 5%;
+}
+
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__header {
-  text-align: left;
-  padding-left: 22px;
-  border-bottom: 1px solid #194EA0;
-  font-weight: bold;
+  text-align: center;
 }
 
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
-  font-size: 28px;
+  color: #58f9f1;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__body {
   padding: 20px;
   text-align: left;
   font-size: 18px;
-  color: #000;
+  color: #fff;
 }
 
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__body > .dialog-block-item {
   margin: 5px;
 }
 
+#result > .el-dialog__wrapper > .el-dialog >.el-dialog__footer > .dialog-footer {
+  text-align: center;
+}
+
 #result > .el-dialog__wrapper > .el-dialog >.el-dialog__footer > .dialog-footer > .el-button {
   background-color: transparent;
-  border-image: linear-gradient(45deg, #D70C18, #194EA0) 10 10;
-  color: #000;
-  outline: none;
-  width: 80px;
-  height: 40px;
+  display: inline-block;
+  margin: 0 auto;
+  border: 2px solid #58f9f1;
+  /*border-radius: 30%;*/
+  width: 30%;
+  height: 5%;
   font-size: 16px;
   cursor: pointer;
 }
 
 #result > .el-dialog__wrapper > .el-dialog >
 .el-dialog__footer > .dialog-footer > .el-button:hover {
-  transform: scale(1.05, 1.05);
+  background-color: rgba(41, 171, 226, 0.32);
+}
+
+#result > .v-modal {
+  opacity: 0.8;
 }
 </style>
 

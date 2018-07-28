@@ -27,6 +27,7 @@ export default {
   methods: {
     login() {
       this.$router.push({ path: `${this.$route.query.operation}` });
+      window.login = true;
     },
     backHome() {
       this.$router.push({ path: '/' });

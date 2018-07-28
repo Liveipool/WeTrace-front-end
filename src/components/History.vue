@@ -99,8 +99,7 @@ export default {
     },
     // 点击上链按钮
     goOnChain() {
-      const login = false;
-      if (login) {
+      if (window.login) {
         this.$router.push({ path: '/onChain' });
       } else {
         this.$router.push({ path: '/login', query: { operation: 'onChain' } });
@@ -223,7 +222,7 @@ export default {
 .block {
   position: relative;
   display: inline-block;
-  margin: 0 50px 50px 0;
+  margin: 0 50px 28px 0;
   padding: 10px 20px 20px 20px;
   width: 24%;
   height: 30%;
@@ -237,7 +236,7 @@ export default {
 
 .block:hover {
   /*border: 1px solid #D70C18;*/
-  transform: scale(1.01, 1.01);
+  background-color: rgba(41, 171, 226, 0.32);
 }
 
 .block-item-head {
@@ -268,8 +267,6 @@ export default {
 
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__header {
   text-align: center;
-  /*padding-left: 22px;*/
-  /*border-bottom: 1px solid #194EA0;*/
 }
 
 #result > .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
@@ -307,7 +304,8 @@ export default {
 
 #result > .el-dialog__wrapper > .el-dialog >
 .el-dialog__footer > .dialog-footer > .el-button:hover {
-  transform: scale(1.05, 1.05);
+  /*transform: scale(1.05, 1.05);*/
+  background-color: rgba(41, 171, 226, 0.32);
 }
 
 #result > .v-modal {
