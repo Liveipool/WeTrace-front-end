@@ -70,7 +70,8 @@
     </div>
 
     <img
-      class="onChainSubmit" @click="onChainSubmit" id="onChainSubmit" src="../../static/onChainSubmit.png">
+      class="onChainSubmit" @click="onChainSubmit"
+      id="onChainSubmit" src="../../static/onChainSubmit.png">
   </div>
 </template>
 
