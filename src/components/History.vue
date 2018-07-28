@@ -231,6 +231,8 @@ export default {
 .blocks {
   width: 100%;
   height: 100%;
+  padding-left: 3%;
+  text-align: left;
 }
 
 .block {
@@ -259,7 +261,7 @@ export default {
   padding-bottom: 10px;
   /*padding: 5px;*/
   border-bottom: 1px solid #fff;
-  font-size: 24px;
+  font-size: 22px;
   color: #fff;
 }
 

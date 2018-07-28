@@ -416,6 +416,8 @@ export default {
 .blocks {
   width: 100%;
   height: 100%;
+  padding-left: 3%;
+  text-align: left;
 }
 
 .block {
