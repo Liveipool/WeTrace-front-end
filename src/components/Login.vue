@@ -1,6 +1,8 @@
 <template>
   <div class="login">
     <img id="loginOnChainBackgound" src="../../static/loginOnChainBackground.jpg">
+    <img
+      class="home" @click="backHome" src="../../static/homeButton.png">
     <div id="usernameContainer">
       <img id="iconUser" src="../../static/iconUser.png">
       <input id="username" type="text" name="username" placeholder="用户名" autofocus="">
@@ -46,6 +48,15 @@ export default {
   top: 0;
   width: 100%;
   height: 100%;
+}
+
+.home {
+  position: absolute;
+  left: 80%;
+  top: 8%;
+  width: 6%;
+  height: 6%;
+  cursor: pointer;
 }
 
 #usernameContainer {

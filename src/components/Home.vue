@@ -37,7 +37,7 @@
 
     <img
       class="homeBackground" v-show="showResult"
-      src="../../static/homeBackgroundAfterSearch.jpg">
+      src="../../static/searchAndHistoryBackground.jpg">
 
     <div id="result" v-show="showResult">
       <div
@@ -175,6 +175,7 @@ export default {
         this.showResult = true;
         this.buttonAnimate();
         this.searchAnimate();
+        this.resultAnimate();
       }
     },
     // 控制两个跳转按钮的动画
@@ -194,6 +195,11 @@ export default {
       const searchButton = document.getElementById('searchButton');
       search.style.animationPlayState = 'running';
       searchButton.style.animationPlayState = 'running';
+    },
+    // 控制结果部分的动画
+    resultAnimate() {
+      const result = document.getElementById('result');
+      result.style.animationPlayState = 'running';
     },
     // 点击某一个区块打开完整信息
     clickBlock(block) {
@@ -382,6 +388,10 @@ export default {
   width: 85%;
   height: 71%;
   overflow: auto;
+  opacity: 0;
+  animation: showResult 1s ease-out 1;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 .blocks {
@@ -432,8 +442,56 @@ export default {
   0 {top: 25%; width: 30%; left: 60%;}
   100% {top: 15%; width: 16%; left: 71.5%;}
 }
+
 @keyframes searchButtonAnimate {
   0 {width: 6%; height: 65%;}
   100% {width: 7%; height: 50%;}
 }
+
+@keyframes showResult {
+  0 {opacity: 0;}
+  100% {opacity: 1;}
+}
 </style>
+
+<style>
+/*弹框部分*/
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+  text-align: left;
+  padding-left: 22px;
+  border-bottom: 1px solid #194EA0;
+  font-weight: bold;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+  font-size: 28px;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__body {
+  padding: 20px;
+  text-align: left;
+  font-size: 18px;
+  color: #000;
+}
+
+#result > .el-dialog__wrapper > .el-dialog > .el-dialog__body > .dialog-block-item {
+  margin: 5px;
+}
+
+#result > .el-dialog__wrapper > .el-dialog >.el-dialog__footer > .dialog-footer > .el-button {
+  background-color: transparent;
+  border-image: linear-gradient(45deg, #D70C18, #194EA0) 10 10;
+  color: #000;
+  outline: none;
+  width: 80px;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#result > .el-dialog__wrapper > .el-dialog >
+.el-dialog__footer > .dialog-footer > .el-button:hover {
+  transform: scale(1.05, 1.05);
+}
+</style>
+
