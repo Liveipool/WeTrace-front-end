@@ -42,7 +42,9 @@
     <div id="result" v-show="showResult">
       <div
         class="blocks">
-          <div class="block" @click="clickBlock(block)" v-for="(block, index) in blocks" :key="index.toString()">
+          <div
+            class="block" @click="clickBlock(block)"
+            v-for="(block, index) in blocks" :key="index.toString()">
             <div class="block-item-head">{{block.businessType}}</div>
             <!-- <div class="block-item">index: {{index}}</div> -->
             <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
@@ -62,6 +64,46 @@
             <!-- <div class="block-item">下站地址: {{block.nextNodeLocation}}</div> -->
           </div>
       </div>
+      <el-dialog
+        :title="this.getDialogTitle"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :show-close="false"
+        :modal-append-to-body="false">
+          <div class="dialog-block-item">
+          {{this.getBusinessType}}: {{this.dialogBlock.businessType}}</div>
+          <div class="dialog-block-item">
+          {{this.getItemId}}: {{this.dialogBlock.itemId}}</div>
+          <div class="dialog-block-item">
+          {{this.getBarcode}}: {{this.dialogBlock.barcode}}</div>
+          <div class="dialog-block-item">
+          {{this.getOrigin}}: {{this.dialogBlock.origin}}</div>
+          <div class="dialog-block-item">
+          {{this.getQualityId}}: {{this.dialogBlock.qualityId}}</div>
+          <div class="dialog-block-item">
+          {{this.getAuthenticationId}}: {{this.dialogBlock.authenticationId}}</div>
+          <div class="dialog-block-item">
+          {{this.getLogistics}}: {{this.dialogBlock.logistics}}</div>
+          <div class="dialog-block-item">
+          {{this.getHandler}}: {{this.dialogBlock.handler}}</div>
+          <div class="dialog-block-item">
+          {{this.getHandleTime}}: {{this.dialogBlock.handleTime}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeId}}: {{this.dialogBlock.currentNodeId}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeName}}: {{this.dialogBlock.currentNodeName}}</div>
+          <div class="dialog-block-item">
+          {{this.getCurrentNodeLocation}}: {{this.dialogBlock.currentNodeLocation}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeId}}: {{this.dialogBlock.nextNodeId}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeName}}: {{this.dialogBlock.nextNodeName}}</div>
+          <div class="dialog-block-item">
+          {{this.getNextNodeLocation}}: {{this.dialogBlock.nextNodeLocation}}</div>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
     </div>
   </div>
 </template>
@@ -78,6 +120,8 @@ export default {
       showEmptyHint: false,
       showResult: false,
       blocks,
+      dialogVisible: false,
+      dialogBlock: {},
     };
   },
   methods: {
@@ -163,6 +207,9 @@ export default {
     },
     getEmptyResult() {
       return this.language === 'Chinese' ? '未查到相关数据，请检查ID是否正确...' : 'Data not found, please check...';
+    },
+    getDialogTitle() {
+      return this.language === 'Chinese' ? '完整区块信息' : 'Complete block infos';
     },
     getBusinessType() {
       return this.language === 'Chinese' ? '商家类型' : 'businessType';

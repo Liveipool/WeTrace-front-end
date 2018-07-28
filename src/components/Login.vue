@@ -1,18 +1,16 @@
 <template>
   <div class="login">
-    <div id="leftContent">
-      <button id="backHome" @click="backHome">回到主页</button>
-      <input id="username" type="text" name="username" placeholder="请输入用户名">
-      <input id="password" type="text" name="password" placeholder="请输入密码">
-      <div id="signup">注册</div>
-      <div id="login" @click="login">登录</div>
+    <img id="loginOnChainBackgound" src="../../static/loginOnChainBackground.jpg">
+    <div id="usernameContainer">
+      <img id="iconUser" src="../../static/iconUser.png">
+      <input id="username" type="text" name="username" placeholder="用户名" autofocus="">
     </div>
-    <div id="rightContent">
-      <img id="backgroundImg" src="../../static/loginBackground.png">
-      <div id="name">WeTrace</div>
-      <div id="slogan"><span class="square"></span>全球领先的区块链商品溯源平台</div>
-      <div class="division"></div>
+    <div id="passwordContainer">
+      <img id="iconLock" src="../../static/iconLock.png">
+      <input id="password" type="text" name="password" placeholder="密码">
+      <img id="iconEye" src="../../static/iconEye.png">
     </div>
+    <img id="loginButton" src="../../static/loginButton.png" @click="login">
   </div>
 </template>
 
@@ -42,137 +40,78 @@ export default {
   height: 100%;
 }
 
-#leftContent {
+#loginOnChainBackgound {
   position: absolute;
   left: 0;
   top: 0;
-  display: inline-block;
-  width: 38.2%;
+  width: 100%;
   height: 100%;
 }
 
-#backHome {
+#usernameContainer {
   position: absolute;
-  left: 20px;
-  top: 20px;
-  display: inline-block;
-  border-image: linear-gradient(45deg, #D70C18, #194EA0) 10 10;
-  outline: none;
-  width: 80px;
-  height: 30px;
-  font-size: 16px;
-  cursor: pointer;
+  left: 32.5%;
+  top: 40%;
+  width: 35%;
+  height: 10%;
 }
 
-#backHome:hover {
-  transform: scale(1.05, 1.05);
-}
-
-#username {
-  display: inline-block;
+#iconUser {
   position: relative;
-  top: 30%;
-  margin: 0 auto;
-  padding: 5px;
-  border: 0;
-  border-bottom: 1px solid #194EA0;
-  width: 400px;
-  height: 30px;
-  font-size: 18px;
-  outline: none;
+  top: 21%;
+  width: 7%;
+  height: 50%;
 }
 
+#username,
 #password {
-  display: inline-block;
-  position: relative;
-  top: 32%;
-  left: 40px;
-  margin: 0 auto;
-  padding: 5px;
+  width: 70%;
+  height: 30%;
+  padding-left: 10px;
+  padding-bottom: 5px;
   border: 0;
-  border-bottom: 1px solid #194EA0;
-  width: 400px;
-  height: 30px;
-  font-size: 18px;
+  border-bottom: 1px solid #58f9f1;
+  background-color: transparent;
+  font-size: 20px;
+  color: #fff;
   outline: none;
 }
 
 #username:hover,
 #password:hover {
-  border-bottom: 1px solid #3399FF;
+  border-bottom: 1px solid #3399ff;
 }
 
-#signup {
-  display: inline-block;
-  position: relative;
-  left: -50px;
-  top: 40%;
-  font-size: 18px;
-  color: #194EA0;
-  cursor: pointer;
-}
-
-#login {
-  display: inline-block;
-  position: relative;
-  left: -40px;
-  top: 40%;
-  font-size: 18px;
-  color: #194EA0;
-  cursor: pointer;
-}
-
-#signup:hover,
-#login:hover {
-  color: #3399ff;
-}
-
-#rightContent {
+#passwordContainer {
   position: absolute;
-  left: 38.2%;
-  top: 0;
-  display: inline-block;
-  width: 61.8%;
-  height: 100%;
-  /*background-image: url('../../static/loginBackground.png');*/
-  /*background-size: 61.8% 100%;*/
+  left: 32.5%;
+  top: 48%;
+  width: 35%;
+  height: 10%;
 }
 
-#backgroundImg {
-  width: 100%;
-  height: 100%;
-}
-
-#name {
+#iconLock {
   position: relative;
-  right: -20%;
-  bottom: 40%;
-  color: #fff;
-  font-size: 140px;
-  font-weight: bold;
-  font-family: fantasy;
+  top: 24%;
+  width: 7%;
+  height: 55%;
 }
 
-#slogan {
-  position: relative;
-  right: -22%;
-  bottom: 43%;
-  font-size: 32px;
-  color: #194EA0;
-  /*background-color: yellow;*/
+#iconEye {
+  position: absolute;
+  left: 85%;
+  top: 20%;
+  width: 6%;
+  height: 45%;
 }
 
-.square {
-  display: inline-block;
-  position: relative;
-  left: -12px;
-  top: 15px;
-  width: 40px;
-  height: 55px;
-  background-color: #194EA0;
-}
-
-.division {
-  display: inline-block;
+#loginButton {
+  position: absolute;
+  left: 37%;
+  top: 60%;
+  background-color: transparent;
+  width: 26%;
+  height: 7%;
+  cursor: pointer;
 }
 </style>
