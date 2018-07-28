@@ -13,7 +13,8 @@
       <img id="iconLock" src="../../static/iconLock.png">
       <input
         id="password" type="password" name="password"
-        placeholder="密码" autocomplete="new-password">
+        placeholder="密码" autocomplete="new-password"
+        @keyup="enterLogin">
       <img id="iconEye" src="../../static/iconEye.png">
     </div>
     <img id="loginButton" src="../../static/loginButton.png" @click="login">
@@ -35,6 +36,11 @@ export default {
     },
     backHome() {
       this.$router.push({ path: '/' });
+    },
+    enterLogin(e) {
+      if (e.key === 'Enter') {
+        this.login();
+      }
     },
   },
 };
