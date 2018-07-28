@@ -24,3 +24,4 @@ new Vue({
 
 window.isLogin = false;
 window.userId = '';
+window.username = '';

@@ -82,4 +82,4 @@ export default {
       itemName: 'Tiffany项链',
     },
   ],
-}
+};

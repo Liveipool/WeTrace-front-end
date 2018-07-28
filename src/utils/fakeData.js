@@ -407,40 +407,40 @@ const blocks = [
   //   // 下站地址
   //   nextNodeLocation: '深圳',
   // },
-  {
-    // 商家类型
-    businessType: '生厂商',
+  // {
+  //   // 商家类型
+  //   businessType: '生厂商',
   //   // 商品ID
   //   itemId: '347823749789423798',
-    // 商品名称
-    itemName: '古驰女士腕表A001',
-    // 产地
-    origin: '意大利',
-    // 条形码
-    barcode: 'random1',
-    // 质检ID
-    qualityId: '123456',
-    // 工厂认证证书ID
-    authenticationId: '10001',
+  //   // 商品名称
+  //   itemName: '古驰女士腕表A001',
+  //   // 产地
+  //   origin: '意大利',
+  //   // 条形码
+  //   barcode: 'random1',
+  //   // 质检ID
+  //   qualityId: '123456',
+  //   // 工厂认证证书ID
+  //   authenticationId: '10001',
   //   // 交易单号
   //   transactionId: '463763482',
   //   // 本站ID
-    currentNodeId: '1001',
+  //   currentNodeId: '1001',
   //   // 本站名称
-    currentNodeName: '古驰生产商',
+  //   currentNodeName: '古驰生产商',
   //   // 本站地址
-    currentNodeLocation: '意大利罗马',
-    // // 经办人
-    // handler: 'Tom',
+  //   currentNodeLocation: '意大利罗马',
+  //   // 经办人
+  //   // handler: 'Tom',
   //   // 经办时间
   //   handleTime: '2018-04-10',
   //   // 下站ID
-    nextNodeId: '1002',
+  //   nextNodeId: '1002',
   //   // 下站名称
-    nextNodeName: '古驰生产商1',
+  //   nextNodeName: '古驰生产商1',
   //   // 下站地址
-    nextNodeLocation: '意大利佛罗伦萨', 
-  },
+  //   nextNodeLocation: '意大利佛罗伦萨',
+  // },
 ];
 
 export default blocks;

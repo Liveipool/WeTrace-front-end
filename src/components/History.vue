@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import blocks from '@/utils/fakeData';
+// import blocks from '@/utils/fakeData';
 import constants from '@/utils/constants';
 
 export default {
@@ -109,11 +109,11 @@ export default {
     },
     // 将时间从时间戳转为yyyy-mm-dd
     getFormatTime(time) {
-      const date = new Date(parseInt(time));
-      const y = date.getFullYear() + '';
-      const m = date.getMonth()+ 1 + '';
-      const d = date.getDate() + '';
-      return `${y}-${m}-${d}`;
+      const date = new Date(parseInt(time, 10));
+      const y = date.getFullYear();
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return `${y.toString()}-${m.toString()}-${d.toString()}`;
     },
     // 点击某一个区块打开完整信息
     clickBlock(block) {
@@ -127,11 +127,15 @@ export default {
       username: this.username,
       userId: window.userId,
     }).then((response) => {
-      this.blocks = response.data.data;
-      this.$message({
-        message: '查询历史记录成功',
-        type: 'success',
-      });
+      const tmpArr = [];
+      for (let i = 0; i < response.data.data.length; i += 1) {
+        tmpArr.unshift(response.data.data[i]);
+      }
+      this.blocks = tmpArr;
+      // this.$message({
+      //   message: '查询历史记录成功',
+      //   type: 'success',
+      // });
     });
 
     // 不要接口

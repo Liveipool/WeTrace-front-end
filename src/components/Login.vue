@@ -40,11 +40,13 @@ export default {
         username: this.username,
       }).then((response) => {
         window.userId = response.data.data;
-        this.$router.push({ path: `${this.$route.query.operation}`, query: { username: this.username } });
+        this.$router.push({ path: `${this.$route.query.operation}` });
+        window.username = this.username;
         window.login = true;
       });
       // 不要接口
-      // this.$router.push({ path: `${this.$route.query.operation}`, query: { username: this.username } });
+      // this.$router.push({ path: `${this.$route.query.operation}`,
+      //   query: { username: this.username } });
       // window.login = true;
     },
     backHome() {

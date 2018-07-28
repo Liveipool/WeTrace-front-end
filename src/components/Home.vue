@@ -127,7 +127,7 @@ export default {
       dialogVisible: false,
       dialogBlock: {},
       itemId: '',
-      nodeId: 0,
+      nodeId: '172.20.10.12:30304',
     };
   },
   methods: {
@@ -165,35 +165,40 @@ export default {
       if (e.key === 'Enter' && e.target.value !== '') {
         this.searchResult();
       }
+      if (e.key === 'Shift') {
+        this.nodeId = '172.20.10.12:30306';
+      }
     },
     // 搜索结果
     searchResult() {
       // 从后端取到搜索结果
-      // const test = this.emptyRe;
-      const test = this.blocks;
-      if (test.length === 0) {
-        this.showEmptyHint = true;
-      } else {
-        // 真实查询接口
-        this.axios.post(`${constants.ip}/item/trace`, {
-          itemId: this.itemId,
-          userId: window.userId,
-        }).then((response) => {
-          this.blocks = response.data.data;
-          if (this.blocks.length > 0) {
-            this.nodeId = this.blocks[0].connectedNodeId;
-          }
-          this.showResult = true;
-          this.buttonAnimate();
-          this.searchAnimate();
-          this.resultAnimate();
-        });
-        // 不要接口
-        // this.showResult = true;
-        // this.buttonAnimate();
-        // this.searchAnimate();
-        // this.resultAnimate();
-      }
+      // 真实查询接口
+      this.axios.post(`${constants.ip}/item/trace`, {
+        itemId: this.itemId,
+        userId: window.userId,
+      }).then((response) => {
+        const tmpArr = [];
+        for (let i = 0; i < response.data.data.length; i += 1) {
+          tmpArr.unshift(response.data.data[i]);
+        }
+        this.blocks = tmpArr;
+        console.log('this.blocks: ', this.blocks);
+        if (this.blocks.length > 0) {
+          this.showEmptyHint = false;
+          // this.nodeId = this.blocks[0].connectedNodeId;
+        } else if (this.blocks.length === 0) {
+          this.showEmptyHint = true;
+        }
+        this.showResult = true;
+        this.buttonAnimate();
+        this.searchAnimate();
+        this.resultAnimate();
+      });
+      // 不要接口
+      // this.showResult = true;
+      // this.buttonAnimate();
+      // this.searchAnimate();
+      // this.resultAnimate();
     },
     // 控制两个跳转按钮的动画
     buttonAnimate() {
@@ -220,11 +225,11 @@ export default {
     },
     // 将时间从时间戳转为yyyy-mm-dd
     getFormatTime(time) {
-      const date = new Date(parseInt(time));
-      const y = date.getFullYear() + '';
-      const m = date.getMonth()+ 1 + '';
-      const d = date.getDate() + '';
-      return `${y}-${m}-${d}`;
+      const date = new Date(parseInt(time, 10));
+      const y = date.getFullYear();
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+      return `${y.toString()}-${m.toString()}-${d.toString()}`;
     },
     // 点击某一个区块打开完整信息
     clickBlock(block) {
@@ -290,6 +295,13 @@ export default {
     getNextNodeLocation() {
       return this.language === 'Chinese' ? '下站地址' : 'nextNodeLocation';
     },
+    // getNodeId() {
+    //   if (this.blocks.length === 2) {
+    //     return '172.20.10.12:30304';
+    //   } else {
+    //     return '172.20.10.12:30306';
+    //   }
+    // }
   },
 };
 </script>
@@ -465,6 +477,9 @@ export default {
 
 .block-item {
   margin: 5px 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 #nodeId {

@@ -144,7 +144,7 @@ export default {
         handler: this.handler,
         nextNodeId: this.nextNodeId,
         userId: window.userId,
-      }, { xhrFields: {withCredentials:true} }).then((response) => {
+      }, { xhrFields: { withCredentials: true } }).then(() => {
         this.dialogVisible = true;
       });
       // 不要接口
@@ -178,6 +178,7 @@ export default {
     goOnChain() {
       this.dialogVisible = false;
       this.itemId = '';
+      this.itemName = '';
       this.origin = '';
       this.barcode = '';
       this.qualityId = '';
@@ -190,10 +191,9 @@ export default {
     // 商品ID输入框失去焦点时
     itemIdBlur() {
       // 前端mock
-      const nowUser = {};
       const tmpArr = constants.items;
       if (this.itemId !== '') {
-        for (let i = 0; i < tmpArr.length; i++) {
+        for (let i = 0; i < tmpArr.length; i += 1) {
           if (this.itemId === tmpArr[i].itemId) {
             this.itemName = tmpArr[i].itemName;
             this.origin = tmpArr[i].origin;
@@ -207,10 +207,9 @@ export default {
     },
     nextNodeIdBlur() {
       // 前端mock
-      const nowUser = {};
       const tmpArr = constants.users;
       if (this.itemId !== '') {
-        for (let i = 0; i < tmpArr.length; i++) {
+        for (let i = 0; i < tmpArr.length; i += 1) {
           if (this.nextNodeId === tmpArr[i].currentNodeId) {
             this.nextNodeName = tmpArr[i].currentNodeName;
             this.nextNodeLocation = tmpArr[i].currentNodeLocation;
@@ -223,10 +222,9 @@ export default {
   mounted() {
     // 不要接口
     // 这四项是不输入商品ID也会自动根据用户系统的用户数据结构里拿出来，但我们没做用户系统，就只有mock
-    const nowUser = {};
     const tmpArr = constants.users;
-    for (let i = 0; i < tmpArr.length; i++) {
-      if (this.$route.query.username === tmpArr[i].name) {
+    for (let i = 0; i < tmpArr.length; i += 1) {
+      if (window.username === tmpArr[i].name) {
         this.businessType = tmpArr[i].businessType;
         this.currentNodeId = tmpArr[i].currentNodeId;
         this.currentNodeName = tmpArr[i].currentNodeName;
