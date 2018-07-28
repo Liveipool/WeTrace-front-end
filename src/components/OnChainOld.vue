@@ -9,11 +9,10 @@
       </el-option>
     </el-select>
     <input id="itemId" type="text" name="itemId" placeholder="请输入物品Id">
-    <input id="barcode" type="text" name="barcode" placeholder="请输入条形码">
     <input id="origin" type="text" name="origin" placeholder="请输入产地">
     <input id="qualityId" type="text" name="qualityId" placeholder="请输入质检Id">
     <input id="authenticationId" type="text" name="authenticationId" placeholder="请输入工厂认证证书Id">
-    <input id="logistics" type="text" name="logistics" placeholder="请输入物流单号">
+    <input id="transactionId" type="text" name="transactionId" placeholder="请输入交易单号">
     <input id="currentNodeId" type="text" name="currentNodeId" placeholder="请输入本站id">
     <input id="currentNodeName" type="text" name="currentNodeName" placeholder="请输入本站名称">
     <input id="currentNodeLocation" type="text" name="currentNodeLocation" placeholder="请输入本站地址">

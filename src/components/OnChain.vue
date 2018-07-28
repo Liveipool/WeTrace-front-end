@@ -9,63 +9,57 @@
     <div id="table">
       <div class="item">
         <span class="title">商家类型</span>
-        <input class="content" type="text" name="businessType" autofocus="">
-      </div>
-      <div class="item">
-        <span class="title">物品Id</span>
-        <input class="content" type="text" name="itemId">
-      </div>
-      <div class="item">
-        <span class="title">条形码</span>
-        <input class="content" type="text" name="barcode">
-      </div>
-      <div class="item">
-        <span class="title">产地</span>
-        <input class="content" type="text" name="origin">
-      </div>
-      <div class="item">
-        <span class="title">质检Id</span>
-        <input class="content" type="text" name="qualityId">
-      </div>
-      <div class="item">
-        <span class="title">证书Id</span>
-        <input class="content" type="text" name="authenticationId">
-      </div>
-      <div class="item">
-        <span class="title">物流单号</span>
-        <input class="content" type="text" name="logistics">
+        <input class="content" type="text" name="businessType" :value="businessType">
       </div>
       <div class="item">
         <span class="title">本站Id</span>
-        <input class="content" type="text" name="currentNodeId">
+        <input
+          class="content" type="text" name="currentNodeId"
+          :value="currentNodeId" autofocus="autofocus">
       </div>
       <div class="item">
         <span class="title">本站名称</span>
-        <input class="content" type="text" name="currentNodeName">
+        <input class="content" type="text" name="currentNodeName" :value="currentNodeName">
       </div>
       <div class="item">
         <span class="title">本站地址</span>
-        <input class="content" type="text" name="currentNodeLocation">
+        <input class="content" type="text" name="currentNodeLocation" :value="currentNodeLocation">
       </div>
       <div class="item">
-        <span class="title">经手人</span>
-        <input class="content" type="text" name="handler">
+        <span class="title">物品Id</span>
+        <input class="content" type="text" name="itemId" :value="itemId">
       </div>
       <div class="item">
-        <span class="title">经办时间</span>
-        <input class="content" type="text" name="handleTime">
+        <span class="title">产地</span>
+        <input class="content" type="text" name="origin" :value="origin">
+      </div>
+      <div class="item">
+        <span class="title">质检Id</span>
+        <input class="content" type="text" name="qualityId" :value="qualityId">
+      </div>
+      <div class="item">
+        <span class="title">证书Id</span>
+        <input class="content" type="text" name="authenticationId" :value="authenticationId">
       </div>
       <div class="item">
         <span class="title">下站Id</span>
-        <input class="content" type="text" name="nextNodeId">
+        <input class="content" type="text" name="nextNodeId" :value="nextNodeId">
       </div>
       <div class="item">
         <span class="title">下站名称</span>
-        <input class="content" type="text" name="nextNodeName">
+        <input class="content" type="text" name="nextNodeName" :value="nextNodeName">
       </div>
       <div class="item">
         <span class="title">下站地址</span>
-        <input class="content" type="text" name="nextNodeLocation">
+        <input class="content" type="text" name="nextNodeLocation" :value="nextNodeLocation">
+      </div>
+      <div class="item">
+        <span class="title">经手人</span>
+        <input class="content" type="text" name="handler" :value="handler">
+      </div>
+      <div class="item">
+        <span class="title">经办时间</span>
+        <input class="content" type="text" name="handleTime" :value="handleTime">
       </div>
     </div>
 
@@ -76,11 +70,27 @@
 </template>
 
 <script>
+import blocks from '@/utils/fakeData';
+
 export default {
   name: 'Login',
   data() {
     return {
-      msg: '',
+      blocks,
+      businessType: '',
+      itemId: '',
+      origin: '',
+      qualityId: '',
+      authenticationId: '',
+      transactionId: '',
+      currentNodeId: '',
+      currentNodeName: '',
+      currentNodeLocation: '',
+      handler: '',
+      handleTime: '',
+      nextNodeId: '',
+      nextNodeName: '',
+      nextNodeLocation: '',
     };
   },
   methods: {
@@ -102,6 +112,26 @@ export default {
         type: 'success',
       });
     },
+  },
+  mounted() {
+    if (this.blocks.length !== 0) {
+      const itemObj = this.blocks[0];
+      this.businessType = itemObj.businessType;
+      this.currentNodeId = itemObj.currentNodeId;
+      this.currentNodeName = itemObj.currentNodeName;
+      this.currentNodeLocation = itemObj.currentNodeLocation;
+      this.itemId = itemObj.itemId;
+      this.origin = itemObj.origin;
+      this.qualityId = itemObj.qualityId;
+      this.authenticationId = itemObj.authenticationId;
+      // this.transactionId = itemObj.transactionId;
+      // this.handler = itemObj.handler;
+      const date = new Date();
+      this.handleTime = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+      this.nextNodeId = itemObj.nextNodeId;
+      this.nextNodeName = itemObj.nextNodeName;
+      this.nextNodeLocation = itemObj.nextNodeLocation;
+    }
   },
 };
 </script>

@@ -50,11 +50,10 @@
           <div class="block-item-head">{{block.businessType}}</div>
           <!-- <div class="block-item">index: {{index}}</div> -->
           <div class="block-item">{{getItemId}}: {{block.itemId}}</div>
-          <!-- <div class="block-item">条形码: {{block.barcode}}</div> -->
           <!-- <div class="block-item">产地: {{block.origin}}</div> -->
           <!-- <div class="block-item">质检Id: {{block.qualityId}}</div> -->
           <!-- <div class="block-item">工厂认证证书Id: {{block.authenticationId}}</div> -->
-          <!-- <div class="block-item">物流单号: {{block.logistics}}</div> -->
+          <!-- <div class="block-item">交易单号: {{block.transactionId}}</div> -->
           <!-- <div class="block-item">本站地址: {{block.currentNodeLocation}}</div> -->
           <div class="block-item">{{getHandler}}: {{block.handler}}</div>
           <div class="block-item">{{getHandleTime}}: {{block.handleTime}}</div>
@@ -86,15 +85,13 @@
           <div class="dialog-block-item">
           {{this.getItemId}}: {{this.dialogBlock.itemId}}</div>
           <div class="dialog-block-item">
-          {{this.getBarcode}}: {{this.dialogBlock.barcode}}</div>
-          <div class="dialog-block-item">
           {{this.getOrigin}}: {{this.dialogBlock.origin}}</div>
           <div class="dialog-block-item">
           {{this.getQualityId}}: {{this.dialogBlock.qualityId}}</div>
           <div class="dialog-block-item">
           {{this.getAuthenticationId}}: {{this.dialogBlock.authenticationId}}</div>
           <div class="dialog-block-item">
-          {{this.getLogistics}}: {{this.dialogBlock.logistics}}</div>
+          {{this.getTransactionId}}: {{this.dialogBlock.transactionId}}</div>
           <div class="dialog-block-item">
           {{this.getHandler}}: {{this.dialogBlock.handler}}</div>
           <div class="dialog-block-item">
@@ -228,9 +225,6 @@ export default {
     getItemId() {
       return this.language === 'Chinese' ? '物品Id' : 'itemId';
     },
-    getBarcode() {
-      return this.language === 'Chinese' ? '条形码' : 'barcode';
-    },
     getOrigin() {
       return this.language === 'Chinese' ? '产地' : 'origin';
     },
@@ -240,8 +234,8 @@ export default {
     getAuthenticationId() {
       return this.language === 'Chinese' ? '工厂认证证书Id' : 'authenticationId';
     },
-    getLogistics() {
-      return this.language === 'Chinese' ? '物流单号' : 'logistics';
+    getTransactionId() {
+      return this.language === 'Chinese' ? '交易单号' : 'transactionId';
     },
     getCurrentNodeId() {
       return this.language === 'Chinese' ? '本站Id' : 'currentNodeId';

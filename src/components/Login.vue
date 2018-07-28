@@ -5,11 +5,15 @@
       class="home" @click="backHome" src="../../static/homeButton.png">
     <div id="usernameContainer">
       <img id="iconUser" src="../../static/iconUser.png">
-      <input id="username" type="text" name="username" placeholder="用户名" autofocus="">
+      <input
+        id="username" type="text" name="username"
+        placeholder="用户名" autofocus="autofocus">
     </div>
     <div id="passwordContainer">
       <img id="iconLock" src="../../static/iconLock.png">
-      <input id="password" type="text" name="password" placeholder="密码">
+      <input
+        id="password" type="password" name="password"
+        placeholder="密码" autocomplete="new-password">
       <img id="iconEye" src="../../static/iconEye.png">
     </div>
     <img id="loginButton" src="../../static/loginButton.png" @click="login">
@@ -111,8 +115,8 @@ export default {
 
 #iconEye {
   position: absolute;
-  left: 85%;
-  top: 20%;
+  left: 83%;
+  top: 25%;
   width: 6%;
   height: 45%;
 }
@@ -125,5 +129,20 @@ export default {
   width: 26%;
   height: 7%;
   cursor: pointer;
+}
+</style>
+
+<style>
+/*input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow:0 0 0 50px transparent inset;
+  -webkit-text-fill-color: transparent;
+}*/
+input:-webkit-autofill {
+  background-color: rgb(250, 255, 189);
+  background-image: none;
+  color: rgb(0, 0, 0);
 }
 </style>
