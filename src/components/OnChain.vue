@@ -70,6 +70,19 @@
     <img
       class="onChainSubmit" @click="onChainSubmit"
       id="onChainSubmit" src="../../static/onChainSubmit.png">
+
+    <el-dialog
+      title="上链成功"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false">
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="goHistory">上链记录</el-button>
+        <el-button type="primary" @click="goOnChain">继续上链</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -96,6 +109,7 @@ export default {
       nextNodeId: '',
       nextNodeName: '',
       nextNodeLocation: '',
+      dialogVisible: false,
     };
   },
   methods: {
@@ -131,10 +145,19 @@ export default {
       //   });
       // });
       // 不要接口
-      this.$message({
-        message: '上链成功',
-        type: 'success',
-      });
+      // this.$message({
+      //   message: '上链成功',
+      //   type: 'success',
+      // });
+      this.dialogVisible = true;
+    },
+    goHistory() {
+      this.dialogVisible = false;
+      this.$router.push({ path: '/history' });
+    },
+    goOnChain() {
+      this.dialogVisible = false;
+      // TODOS：这里还要重新交互一下表单
     },
   },
   mounted() {
@@ -256,6 +279,55 @@ export default {
 .el-message > .el-message__icon,
 .el-message > .el-message__content {
   color: #fff;
+}
+
+/*弹框部分*/
+.login > .el-dialog__wrapper > .el-dialog {
+  padding: 20px;
+  background-color: transparent;
+  background-color: rgba(41, 171, 226, 0.32);
+  color: #fff;
+  border: 2px solid #58f9f1;
+  border-radius: 3%;
+}
+
+.login > .el-dialog__wrapper > .el-dialog > .el-dialog__header {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.login > .el-dialog__wrapper > .el-dialog > .el-dialog__header > .el-dialog__title {
+  color: #fff;
+  font-size: 32px;
+  /*font-weight: bold;*/
+}
+
+.login > .el-dialog__wrapper > .el-dialog > .el-dialog__body {
+  padding: 0;
+}
+
+.login > .el-dialog__wrapper > .el-dialog >.el-dialog__footer {
+  text-align: center;
+}
+
+.login > .el-dialog__wrapper > .el-dialog >.el-dialog__footer > .dialog-footer > .el-button {
+  background-color: transparent;
+  display: inline-block;
+  /*margin: 0 auto;*/
+  margin: 10px;
+  padding: 10px 0;
+  border: 2px solid #58f9f1;
+  width: 35%;
+  height: 5%;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.login > .el-dialog__wrapper > .el-dialog >
+.el-dialog__footer > .dialog-footer > .el-button:hover {
+  background-color: rgba(41, 171, 226, 0.32);
 }
 </style>
 
