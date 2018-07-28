@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import constants from '@/utils/constants';
+
 export default {
   name: 'Login',
   data() {
@@ -35,15 +37,17 @@ export default {
     login() {
       // 真实接口
       // console.log('username: ', this.username, 'password: ', this.password);
-      // this.axios.post('http://172.20.10.2:8080/login', {
+      // this.axios.post(`${constants.ip}/login`, {
       //   username: this.username,
       // }).then((response) => {
+      //   console.log('login response: ', response);
       //   window.userId = response.data.data;
-      //   this.$router.push({ path: `${this.$route.query.operation}` });
+      //   console.log('window.userId: ', window.userId);
+      //   this.$router.push({ path: `${this.$route.query.operation}`, query: { username: this.username } });
       //   window.login = true;
       // });
       // 不要接口
-      this.$router.push({ path: `${this.$route.query.operation}` });
+      this.$router.push({ path: `${this.$route.query.operation}`, query: { username: this.username } });
       window.login = true;
     },
     backHome() {

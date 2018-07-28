@@ -106,11 +106,14 @@
         </span>
       </el-dialog>
     </div>
+
+    <div id="nodeId" v-show="showResult">当前数据源: {{nodeId}}</div>
   </div>
 </template>
 
 <script>
 import blocks from '@/utils/fakeData';
+import constants from '@/utils/constants';
 
 export default {
   name: 'Home',
@@ -124,6 +127,7 @@ export default {
       dialogVisible: false,
       dialogBlock: {},
       itemId: '',
+      nodeId: 0,
     };
   },
   methods: {
@@ -171,22 +175,25 @@ export default {
         this.showEmptyHint = true;
       } else {
         // 真实查询接口
-        // console.log('itemId: ', this.itemId);
-        // this.axios.post('http://172.20.10.2:8080/item/trace', {
-        //   itemId: this.itemId,
-        //   userId: window.userId,
-        // }).then((response) => {
-        //   console.log('item response: ', response);
-        //   this.showResult = true;
-        //   this.buttonAnimate();
-        //   this.searchAnimate();
-        //   this.resultAnimate();
-        // });
+        console.log('itemId: ', this.itemId);
+        this.axios.post(`${constants.ip}/item/trace`, {
+          itemId: this.itemId,
+          userId: window.userId,
+        }).then((response) => {
+          console.log('itemId response: ', response);
+          this.blocks = response.data.data;
+          this.showResult = true;
+          this.buttonAnimate();
+          this.searchAnimate();
+          this.resultAnimate();
+        }).catch((error) => {
+          console.log('itemId error: ', error);
+        });
         // 不要接口
-        this.showResult = true;
-        this.buttonAnimate();
-        this.searchAnimate();
-        this.resultAnimate();
+        // this.showResult = true;
+        // this.buttonAnimate();
+        // this.searchAnimate();
+        // this.resultAnimate();
       }
     },
     // 控制两个跳转按钮的动画
@@ -451,6 +458,14 @@ export default {
 
 .block-item {
   margin: 5px 0;
+}
+
+#nodeId {
+  position: absolute;
+  left: 5.5%;
+  top: 16%;
+  color: #fff;
+  font-size: 24px;
 }
 
 @keyframes buttonUp {

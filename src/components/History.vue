@@ -82,13 +82,14 @@
 
 <script>
 import blocks from '@/utils/fakeData';
+import constants from '@/utils/constants';
 
 export default {
   name: 'History',
   data() {
     return {
       msg: '',
-      blocks,
+      blocks: [],
       dialogVisible: false,
       dialogBlock: {},
       language: 'Chinese',
@@ -114,16 +115,36 @@ export default {
   },
   mounted() {
     // 真实接口
-    // this.axios.post('http://172.20.10.2:8080/user/trace', {
-    //   username: this.username,
-    //   userId: window.userId,
-    // }).then((response) => {
-    //   console.log('history response: ', response);
-    //   this.$message({
-    //     message: '查询历史记录成功',
-    //     type: 'success',
-    //   });
-    // });
+    this.axios.post(`${constants.ip}/user/trace`, {
+      username: this.username,
+      userId: window.userId,
+    }).then((response) => {
+      console.log('history response: ', response);
+      this.blocks = response.data.data;
+      this.$message({
+        message: '查询历史记录成功',
+        type: 'success',
+      });
+    });
+
+    // 不要接口
+    // this.blocks = blocks;
+    // if (this.$route.query.newBlock) {
+
+    //   const nodes = document.getElementsByClassName('block');
+    //   console.log('nodes: ', nodes);
+    //   // nodes[0].style.animationName = 'fadeToggle';
+    //   // nodes[0].style.animationDuration = '1s';
+    //   // nodes[0].style.animationTimingFunction = 'ease-out';
+    //   nodes[0].style.animationPlayState = 'running';
+    // }
+  },
+  updated() {
+    // 如果是商户刚上链之后来到这个页面，给一个高亮显示
+    if (this.$route.query.newBlock && document.getElementsByClassName('block').length > 0) {
+      const nodes = document.getElementsByClassName('block');
+      nodes[0].style.animationPlayState = 'running';
+    }
   },
   computed: {
     getPlaceHolder() {
@@ -248,6 +269,10 @@ export default {
   text-align: left;
   color: #fff;
   cursor: pointer;
+  opacity: 1;
+  animation: fadeToggle 1.5s ease-out .5s 2;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 .block:hover {
@@ -267,6 +292,12 @@ export default {
 
 .block-item {
   margin: 5px 0;
+}
+
+@keyframes fadeToggle {
+  0 {background-color: rgba(41, 171, 226, 0.22)}
+  50% {background-color: rgba(41, 171, 226, 0.82);}
+  100% {background-color: rgba(41, 171, 226, 0.22)}
 }
 </style>
 

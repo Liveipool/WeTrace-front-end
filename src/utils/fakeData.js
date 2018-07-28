@@ -17,13 +17,13 @@ const blocks = [
     // 交易单号
     transactionId: '463763482',
     // 本站ID
-    currentNodeId: '7897987997879',
+    currentNodeId: '123498765',
     // 本站名称
     currentNodeName: '苏宁',
     // 本站地址
     currentNodeLocation: '北京',
     // 经办人
-    handler: '范锴元',
+    handler: 'Tom',
     // 经办时间
     handleTime: '2018-07-25',
     // 下站ID
@@ -51,13 +51,13 @@ const blocks = [
     // 交易单号
     transactionId: '463763482',
     // 本站ID
-    currentNodeId: '342234324342',
+    currentNodeId: '343434343',
     // 本站名称
     currentNodeName: '富士康',
     // 本站地址
     currentNodeLocation: '北京',
     // 经办人
-    handler: '罗俊',
+    handler: 'Mary',
     // 经办时间
     handleTime: '2018-07-22',
     // 下站ID
@@ -83,7 +83,7 @@ const blocks = [
     // 工厂认证证书ID
     authenticationId: '87984379878493789445',
     // 交易单号
-    transactionId: '463763482',
+    transactionId: '789789789',
     // 本站ID
     currentNodeId: '7439884798898989',
     // 本站名称
@@ -91,7 +91,7 @@ const blocks = [
     // 本站地址
     currentNodeLocation: '北京',
     // 经办人
-    handler: '禤烁扬',
+    handler: 'Tim',
     // 经办时间
     handleTime: '2018-07-18',
     // 下站ID
@@ -407,6 +407,40 @@ const blocks = [
   //   // 下站地址
   //   nextNodeLocation: '深圳',
   // },
+  {
+    // 商家类型
+    businessType: '生厂商',
+  //   // 商品ID
+  //   itemId: '347823749789423798',
+    // 商品名称
+    itemName: '古驰女士腕表A001',
+    // 产地
+    origin: '意大利',
+    // 条形码
+    barcode: 'random1',
+    // 质检ID
+    qualityId: '123456',
+    // 工厂认证证书ID
+    authenticationId: '10001',
+  //   // 交易单号
+  //   transactionId: '463763482',
+  //   // 本站ID
+    currentNodeId: '1001',
+  //   // 本站名称
+    currentNodeName: '古驰生产商',
+  //   // 本站地址
+    currentNodeLocation: '意大利罗马',
+    // // 经办人
+    // handler: 'Tom',
+  //   // 经办时间
+  //   handleTime: '2018-04-10',
+  //   // 下站ID
+    nextNodeId: '1002',
+  //   // 下站名称
+    nextNodeName: '古驰生产商1',
+  //   // 下站地址
+    nextNodeLocation: '意大利佛罗伦萨', 
+  },
 ];
 
 export default blocks;

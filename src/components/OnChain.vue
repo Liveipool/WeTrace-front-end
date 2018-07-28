@@ -27,7 +27,13 @@
       </div>
       <div class="item">
         <span class="title">商品ID</span>
-        <input class="content" type="text" name="itemId" v-model="itemId">
+        <input
+          class="content" type="text" name="itemId"
+          v-model="itemId" @blur="itemIdBlur">
+      </div>
+      <div class="item">
+        <span class="title">商品名称</span>
+        <input class="content" type="text" name="itemName" v-model="itemName">
       </div>
       <div class="item">
         <span class="title">产地</span>
@@ -47,7 +53,9 @@
       </div>
       <div class="item">
         <span class="title">下站ID</span>
-        <input class="content" type="text" name="nextNodeId" v-model="nextNodeId">
+        <input
+          class="content" type="text" name="nextNodeId"
+          v-model="nextNodeId" @blur="nextNodeIdBlur">
       </div>
       <div class="item">
         <span class="title">下站名称</span>
@@ -88,6 +96,7 @@
 
 <script>
 import blocks from '@/utils/fakeData';
+import constants from '@/utils/constants';
 
 export default {
   name: 'Login',
@@ -96,6 +105,7 @@ export default {
       blocks,
       businessType: '',
       itemId: '',
+      itemName: '',
       origin: '',
       barcode: '',
       qualityId: '',
@@ -127,58 +137,106 @@ export default {
     // 提交表单进行上链
     onChainSubmit() {
       // 真实接口
-      // console.log('this.itemId: ', this.itemId, 'this.barcode: ',
-      //   this.barcode, 'this.currentNodeId: ', this.currentNodeId,
-      //   'this.handler: ', this.handler, 'this.nextNodeId: ', this.nextNodeId);
-      // this.axios.post('http://172.20.10.2:8080/upload', {
-      //   itemId: this.itemId,
-      //   barcode: this.barcode,
-      //   currentNodeId: this.currentNodeId,
-      //   handler: this.handler,
-      //   nextNodeId: this.nextNodeId,
-      //   userId: window.userId,
-      // }, { xhrFields: {withCredentials:true} }).then((response) => {
-      //   console.log('upload response: ', response);
-      //   this.$message({
-      //     message: '上链成功',
-      //     type: 'success',
-      //   });
-      // });
+      console.log('this.itemId: ', this.itemId, 'this.barcode: ',
+        this.barcode, 'this.currentNodeId: ', this.currentNodeId,
+        'this.handler: ', this.handler, 'this.nextNodeId: ', this.nextNodeId);
+      this.axios.post(`${constants.ip}/upload`, {
+        itemId: this.itemId,
+        barcode: this.barcode,
+        currentNodeId: this.currentNodeId,
+        handler: this.handler,
+        nextNodeId: this.nextNodeId,
+        userId: window.userId,
+      }, { xhrFields: {withCredentials:true} }).then((response) => {
+        console.log('upload response: ', response);
+        this.dialogVisible = true;
+      });
       // 不要接口
-      // this.$message({
-      //   message: '上链成功',
-      //   type: 'success',
-      // });
-      this.dialogVisible = true;
+      // this.dialogVisible = true;
+      // const date = new Date();
+      // this.handleTime = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+      // const newBlock = {
+      //   businessType: this.businessType,
+      //   currentNodeId: this.currentNodeId,
+      //   currentNodeName: this.currentNodeName,
+      //   currentNodeLocation: this.currentNodeLocation,
+      //   itemId: this.itemId,
+      //   origin: this.origin,
+      //   itemName: this.itemName,
+      //   barcode: this.barcode,
+      //   qualityId: this.qualityId,
+      //   authenticationId: this.authenticationId,
+      //   transactionId: this.transactionId,
+      //   nextNodeId: this.nextNodeId,
+      //   nextNodeName: this.nextNodeName,
+      //   nextNodeLocation: this.nextNodeLocation,
+      //   handler: this.handler,
+      //   handleTime: this.handleTime,
+      // };
+      // blocks.unshift(newBlock);
     },
     goHistory() {
       this.dialogVisible = false;
-      this.$router.push({ path: '/history' });
+      this.$router.push({ path: '/history', query: { newBlock: true } });
     },
     goOnChain() {
       this.dialogVisible = false;
-      // TODOS：这里还要重新交互一下表单
+      this.itemId = '';
+      this.origin = '';
+      this.barcode = '';
+      this.qualityId = '';
+      this.authenticationId = '';
+      this.nextNodeId = '';
+      this.nextNodeName = '';
+      this.nextNodeLocation = '';
+      this.handler = '';
+    },
+    // 商品ID输入框失去焦点时
+    itemIdBlur() {
+      // 前端mock
+      const nowUser = {};
+      const tmpArr = constants.items;
+      if (this.itemId !== '') {
+        for (let i = 0; i < tmpArr.length; i++) {
+          if (this.itemId === tmpArr[i].itemId) {
+            this.itemName = tmpArr[i].itemName;
+            this.origin = tmpArr[i].origin;
+            this.barcode = tmpArr[i].barcode;
+            this.qualityId = tmpArr[i].qualityId;
+            this.authenticationId = tmpArr[i].authenticationId;
+            break;
+          }
+        }
+      }
+    },
+    nextNodeIdBlur() {
+      // 前端mock
+      const nowUser = {};
+      const tmpArr = constants.users;
+      if (this.itemId !== '') {
+        for (let i = 0; i < tmpArr.length; i++) {
+          if (this.nextNodeId === tmpArr[i].currentNodeId) {
+            this.nextNodeName = tmpArr[i].currentNodeName;
+            this.nextNodeLocation = tmpArr[i].currentNodeLocation;
+            break;
+          }
+        }
+      }
     },
   },
   mounted() {
-    if (this.blocks.length !== 0) {
-      const itemObj = this.blocks[0];
-      this.businessType = itemObj.businessType;
-      this.currentNodeId = itemObj.currentNodeId;
-      this.currentNodeName = itemObj.currentNodeName;
-      this.currentNodeLocation = itemObj.currentNodeLocation;
-      // this.itemId = itemObj.itemId;
-      this.origin = itemObj.origin;
-      this.barcode = itemObj.barcode;
-      this.qualityId = itemObj.qualityId;
-      this.authenticationId = itemObj.authenticationId;
-      // this.transactionId = itemObj.transactionId;
-      // this.handler = itemObj.handler;
-      const date = new Date();
-      this.handleTime = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
-      this.nextNodeId = itemObj.nextNodeId;
-      this.nextNodeName = itemObj.nextNodeName;
-      this.nextNodeLocation = itemObj.nextNodeLocation;
+    // 不要接口
+    // 这四项是不输入商品ID也会自动根据用户系统的用户数据结构里拿出来，但我们没做用户系统，就只有mock
+    const nowUser = {};
+    const tmpArr = constants.users;
+    for (let i = 0; i < tmpArr.length; i++) {
+      if (this.$route.query.username === tmpArr[i].name) {
+        this.businessType = tmpArr[i].businessType;
+        this.currentNodeId = tmpArr[i].currentNodeId;
+        this.currentNodeName = tmpArr[i].currentNodeName;
+        this.currentNodeLocation = tmpArr[i].currentNodeLocation;
+        break;
+      }
     }
   },
 };
