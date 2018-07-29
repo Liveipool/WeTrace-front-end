@@ -182,7 +182,7 @@ export default {
           tmpArr.unshift(response.data.data[i]);
         }
         this.blocks = tmpArr;
-        console.log('this.blocks: ', this.blocks);
+        // console.log('this.blocks: ', this.blocks);
         if (this.blocks.length > 0) {
           this.showEmptyHint = false;
           // this.nodeId = this.blocks[0].connectedNodeId;
